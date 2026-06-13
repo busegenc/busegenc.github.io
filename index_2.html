@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buse Genç Mut — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --accent: #c8f542;
+      --accent2: #f5c842;
+      --text: #e8e4dc;
+      --muted: #666;
+      --border: #222;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* --- HERO --- */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(200,245,66,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,245,66,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .hero-label {
+      font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .hero-label::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      max-width: 480px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.8rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer; border: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent); color: #0d0d0d; font-weight: 500;
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .scroll-indicator {
+      position: absolute; bottom: 3rem; left: 3rem;
+      display: flex; align-items: center; gap: 1rem;
+      color: var(--muted); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 40px; height: 1px; background: var(--muted);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { width: 40px; opacity: 0.4; }
+      50% { width: 70px; opacity: 1; }
+    }
+
+    /* --- SECTIONS SHARED --- */
+    section { padding: 7rem 3rem; }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    /* --- ABOUT --- */
+    #about {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1100px;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1.2rem; line-height: 1.9; }
+    .about-text p strong { color: var(--text); }
+    .stats-row {
+      display: flex; flex-direction: column; gap: 2rem;
+      padding-top: 1rem;
+    }
+    .stat {
+      border-left: 2px solid var(--accent);
+      padding-left: 1.5rem;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; color: var(--accent); line-height: 1;
+    }
+    .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+
+    /* --- GITHUB --- */
+    #github { max-width: 1100px; margin: 0 auto; }
+    .github-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .github-link {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--accent); font-size: 12px; text-decoration: none;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: gap 0.2s;
+    }
+    .github-link:hover { gap: 0.9rem; }
+    .github-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .repo-card {
+      background: var(--bg);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+    .repo-card:hover { background: var(--surface); }
+    .repo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .repo-desc { color: var(--muted); font-size: 12px; line-height: 1.7; margin-bottom: 1.2rem; }
+    .repo-meta { display: flex; gap: 1.2rem; font-size: 11px; color: var(--muted); }
+    .repo-lang::before {
+      content: '●'; margin-right: 0.4rem; color: var(--accent2);
+    }
+    .github-stats-img {
+      width: 100%; margin-top: 3rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .github-stats-img img {
+      width: 100%; border: 1px solid var(--border);
+      filter: brightness(0.9) contrast(1.1);
+      transition: filter 0.2s;
+    }
+    .github-stats-img img:hover { filter: brightness(1) contrast(1.2); }
+
+    /* --- SKILLS --- */
+    #skills { background: var(--surface); border-top: 1px solid var(--border); }
+    .skills-inner { max-width: 1100px; margin: 0 auto; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .skill-item {
+      background: var(--surface);
+      padding: 1.5rem 1.8rem;
+      display: flex; flex-direction: column; gap: 0.4rem;
+      transition: background 0.2s;
+    }
+    .skill-item:hover { background: var(--bg); }
+    .skill-name { font-size: 13px; color: var(--text); }
+    .skill-tag { font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
+    .skill-bar {
+      height: 2px; background: var(--border); margin-top: 0.5rem;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%; background: var(--accent);
+      transform: scaleX(0); transform-origin: left;
+      animation: fillBar 1s ease forwards;
+      animation-delay: var(--delay, 0s);
+    }
+    @keyframes fillBar { to { transform: scaleX(1); } }
+
+    /* --- CONTACT --- */
+    #contact {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 8rem 3rem;
+    }
+    #contact h2 { margin-bottom: 1rem; }
+    #contact p { color: var(--muted); max-width: 450px; margin: 0 auto 3rem; }
+    .contact-links {
+      display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: var(--muted);
+      flex-wrap: wrap; gap: 1rem;
+    }
+
+    /* --- ANIMATIONS --- */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* cursor glow */
+    .cursor-glow {
+      position: fixed; pointer-events: none; z-index: 9999;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,245,66,0.06) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: left 0.1s ease, top 0.1s ease;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      section, #hero { padding: 5rem 1.5rem 3rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .github-stats-img { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-glow" id="glow"></div>
+
+<nav>
+  <div class="nav-logo">BG</div>
+  <div class="nav-links">
+    <a href="#about">Hakkımda</a>
+    <a href="#github">Projeler</a>
+    <a href="#skills">Yetenekler</a>
+    <a href="#contact">İletişim</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-label">Portfolio — 2026</div>
+    <h1>Buse<br><em>(Genç) Mut</em></h1>
+    <p class="hero-sub">
+      Kod yazan, tasarlayan, öğrenmeyi seven biri.<br>
+      Her satır kod bir fikrin hayata geçişi.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://github.com/busegenc" target="_blank" class="btn btn-primary">
+        GitHub'a Git →
+      </a>
+      <a href="#contact" class="btn btn-outline">İletişime Geç</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Aşağı kaydır
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid fade-up">
+    <div class="about-text">
+      <div class="section-label">// hakkımda</div>
+      <h2>Merhaba,<br>ben <em style="font-style:italic;color:var(--accent)">Buse</em></h2>
+      <p>
+        Yazılım geliştirici, ürün meraklısı ve solo founder. 
+        <strong>Kod yazmak</strong> benim için sadece bir araç değil — 
+        fikirleri hayata geçirmenin en doğrudan yolu.
+      </p>
+      <p>
+        Bankacılık teknolojisinde edindiğim süreç yönetimi ve geliştirme deneyimini, 
+        Türk ailelere yönelik ürünler üretmekle harmanlıyorum.
+      </p>
+      <p>
+        Yeni teknolojiler öğrenmek, sıfırdan ürün kurmak ve sürekli 
+        büyümek vazgeçilmezlerim arasında.
+      </p>
+    </div>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num" id="repoCount">—</div>
+        <div class="stat-label">Public Repository</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="followerCount">—</div>
+        <div class="stat-label">GitHub Follower</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Öğrenme İsteği</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="github" style="max-width:none; padding: 7rem 3rem;">
+  <div style="max-width:1100px; margin:0 auto;" class="fade-up">
+    <div class="github-header">
+      <div>
+        <div class="section-label">// projeler</div>
+        <h2>Öne Çıkan<br>Çalışmalar</h2>
+      </div>
+      <a href="https://github.com/busegenc" target="_blank" class="github-link">
+        GitHub'a Git →
+      </a>
+    </div>
+
+    <!-- PROJECT CARDS -->
+    <div style="display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border);">
+
+      <!-- KoalaWeather — LIVE -->
+      <div class="project-card" style="background:var(--bg); padding:2.5rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:start; transition:background 0.2s;" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+        <div>
+          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
+            <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">KoalaWeather</span>
+            <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#0d0d0d; background:var(--accent); padding:0.2rem 0.6rem; font-weight:500;">● CANLI</span>
+          </div>
+          <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:580px; margin-bottom:1.5rem;">
+            Türk ailelere yönelik hava durumuna göre <strong style="color:var(--text)">bebek & çocuk kıyafet önerisi</strong> yapan web uygulaması. 
+            Beş farklı yaş grubuna özel outfit algoritması, sıcaklık aralıklarına göre dinamik öneriler. 
+            Trendyol affiliate entegrasyonu planlanıyor.
+          </p>
+          <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">JavaScript</span>
+            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">HTML/CSS</span>
+            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Vercel</span>
+            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">OpenWeather API</span>
+          </div>
+          <div style="display:flex; gap:1rem;">
+            <a href="https://babydress-web1.vercel.app" target="_blank" class="btn btn-primary" style="font-size:11px; padding:0.6rem 1.2rem;">Canlıya Git →</a>
+            <a href="https://github.com/busegenc" target="_blank" class="btn btn-outline" style="font-size:11px; padding:0.6rem 1.2rem;">GitHub</a>
+          </div>
+        </div>
+        <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
+          <div style="font-size:2rem; margin-bottom:0.5rem;">🐨</div>
+          Solo Proje
+        </div>
+      </div>
+
+      <!-- KoalaParent — WIP -->
+      <div class="project-card" style="background:var(--bg); padding:2.5rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:start; transition:background 0.2s;" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+        <div>
+          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
+            <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">KoalaParent</span>
+            <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent2); border:1px solid var(--accent2); padding:0.2rem 0.6rem;">⚙ GELİŞTİRİLİYOR</span>
+          </div>
+          <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:580px; margin-bottom:1.5rem;">
+            Türk aileleri için tasarlanmış <strong style="color:var(--text)">çok uygulamalı ebeveynlik platformu</strong>. 
+            KoalaWeather başlangıç noktası — bebek gelişimi takibi, kıyafet önerisi ve daha fazlasını 
+            tek çatı altında toplayacak bir ekosistem vizyonu.
+          </p>
+          <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">React</span>
+            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Node.js</span>
+            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Mobile-First</span>
+            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Türk Pazarı</span>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:center;">
+            <span style="font-size:11px; color:var(--muted); font-style:italic;">Yakında yayında...</span>
+          </div>
+        </div>
+        <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
+          <div style="font-size:2rem; margin-bottom:0.5rem;">🌿</div>
+          Solo Proje
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-inner fade-up">
+    <div class="section-label">// yetenekler</div>
+    <h2>Teknoloji Yığını</h2>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-tag">Dil</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-bar"><div class="skill-fill" style="--delay:0.1s; width:85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-tag">Dil</div>
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-bar"><div class="skill-fill" style="--delay:0.15s; width:80%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-tag">Frontend</div>
+        <div class="skill-name">HTML / CSS</div>
+        <div class="skill-bar"><div class="skill-fill" style="--delay:0.2s; width:88%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-tag">Araç</div>
+        <div class="skill-name">Git & GitHub</div>
+        <div class="skill-bar"><div class="skill-fill" style="--delay:0.25s; width:90%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-tag">Araç</div>
+        <div class="skill-name">VS Code</div>
+        <div class="skill-bar"><div class="skill-fill" style="--delay:0.3s; width:92%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-tag">Diğer</div>
+        <div class="skill-name">Problem Çözme</div>
+        <div class="skill-bar"><div class="skill-fill" style="--delay:0.35s; width:95%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="fade-up">
+  <div class="section-label">// iletişim</div>
+  <h2>Birlikte<br><em style="font-style:italic;color:var(--accent)">çalışalım</em></h2>
+  <p>Projeler, fikirler ya da sadece merhaba demek için — buradayım.</p>
+  <div class="contact-links">
+    <a href="https://github.com/busegenc" target="_blank" class="btn btn-primary">GitHub</a>
+    <a href="mailto:busegenc@github.com" class="btn btn-outline">E-posta</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Buse (Genç) Mut</span>
+  <span>github.com/busegenc</span>
+</footer>
+
+<script>
+  // Cursor glow
+  const glow = document.getElementById('glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+
+  // Intersection Observer fade-up
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // GitHub API — sadece stats için
+  async function loadGithubStats() {
+    try {
+      const res = await fetch('https://api.github.com/users/busegenc');
+      const user = await res.json();
+      if (user.public_repos !== undefined) document.getElementById('repoCount').textContent = user.public_repos;
+      if (user.followers !== undefined) document.getElementById('followerCount').textContent = user.followers;
+    } catch(e) {}
+  }
+  loadGithubStats();
+</script>
+</body>
+</html>
