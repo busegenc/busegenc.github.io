@@ -18,9 +18,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -30,7 +28,6 @@
       overflow-x: hidden;
     }
 
-    /* --- NAV --- */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
@@ -39,307 +36,125 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent); letter-spacing: 0.05em; }
     .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
 
-    /* --- HERO --- */
-    #hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 8rem 3rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
+    #hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 3rem 4rem; position: relative; overflow: hidden; }
     .hero-grid {
       position: absolute; inset: 0; z-index: 0;
-      background-image:
-        linear-gradient(rgba(200,245,66,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200,245,66,0.03) 1px, transparent 1px);
+      background-image: linear-gradient(rgba(200,245,66,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(200,245,66,0.03) 1px, transparent 1px);
       background-size: 60px 60px;
     }
     .hero-content { position: relative; z-index: 1; max-width: 900px; }
-    .hero-label {
-      font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.8rem;
-    }
-    .hero-label::before {
-      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
-    }
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      line-height: 1.05;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-    }
-    h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .hero-sub {
-      max-width: 480px;
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 3rem;
-      line-height: 1.8;
-    }
+    .hero-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
+    .hero-label::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub { max-width: 480px; color: var(--muted); font-size: 13px; margin-bottom: 3rem; line-height: 1.8; }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1.8rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer; border: none;
-      transition: all 0.2s;
-    }
-    .btn-primary {
-      background: var(--accent); color: #0d0d0d; font-weight: 500;
-    }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.8rem; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; }
+    .btn-primary { background: var(--accent); color: #0d0d0d; font-weight: 500; }
     .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
-    .btn-outline {
-      background: transparent; color: var(--text);
-      border: 1px solid var(--border);
-    }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .scroll-indicator { position: absolute; bottom: 3rem; left: 3rem; display: flex; align-items: center; gap: 1rem; color: var(--muted); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+    .scroll-line { width: 40px; height: 1px; background: var(--muted); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%, 100% { width: 40px; opacity: 0.4; } 50% { width: 70px; opacity: 1; } }
 
-    .scroll-indicator {
-      position: absolute; bottom: 3rem; left: 3rem;
-      display: flex; align-items: center; gap: 1rem;
-      color: var(--muted); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 40px; height: 1px; background: var(--muted);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { width: 40px; opacity: 0.4; }
-      50% { width: 70px; opacity: 1; }
-    }
-
-    /* --- SECTIONS SHARED --- */
     section { padding: 7rem 3rem; }
-    .section-label {
-      font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1rem;
-    }
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      line-height: 1.1;
-      margin-bottom: 3rem;
-    }
+    .section-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; margin-bottom: 3rem; }
 
-    /* --- ABOUT --- */
-    #about {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-      max-width: 1100px;
-    }
+    #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; max-width: 1100px; }
     .about-text p { color: var(--muted); margin-bottom: 1.2rem; line-height: 1.9; }
     .about-text p strong { color: var(--text); }
-    .stats-row {
-      display: flex; flex-direction: column; gap: 2rem;
-      padding-top: 1rem;
-    }
-    .stat {
-      border-left: 2px solid var(--accent);
-      padding-left: 1.5rem;
-    }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem; color: var(--accent); line-height: 1;
-    }
+    .stats-row { display: flex; flex-direction: column; gap: 2rem; padding-top: 1rem; }
+    .stat { border-left: 2px solid var(--accent); padding-left: 1.5rem; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
     .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
 
-    /* --- GITHUB --- */
-    #github { max-width: 1100px; margin: 0 auto; }
-    .github-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
-    }
-    .github-link {
-      display: flex; align-items: center; gap: 0.5rem;
-      color: var(--accent); font-size: 12px; text-decoration: none;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      transition: gap 0.2s;
-    }
+    .github-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+    .github-link { display: flex; align-items: center; gap: 0.5rem; color: var(--accent); font-size: 12px; text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: gap 0.2s; }
     .github-link:hover { gap: 0.9rem; }
-    .github-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .repo-card {
-      background: var(--bg);
-      padding: 2rem;
-      transition: background 0.2s;
-    }
-    .repo-card:hover { background: var(--surface); }
-    .repo-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    .repo-desc { color: var(--muted); font-size: 12px; line-height: 1.7; margin-bottom: 1.2rem; }
-    .repo-meta { display: flex; gap: 1.2rem; font-size: 11px; color: var(--muted); }
-    .repo-lang::before {
-      content: '●'; margin-right: 0.4rem; color: var(--accent2);
-    }
-    .github-stats-img {
-      width: 100%; margin-top: 3rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
-    }
-    .github-stats-img img {
-      width: 100%; border: 1px solid var(--border);
-      filter: brightness(0.9) contrast(1.1);
-      transition: filter 0.2s;
-    }
-    .github-stats-img img:hover { filter: brightness(1) contrast(1.2); }
 
-    /* --- SKILLS --- */
+    /* --- PROJECT TABS --- */
+    .project-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+    .tab-btn {
+      padding: 0.8rem 1.8rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+      background: transparent; color: var(--muted);
+      border: none; border-bottom: 2px solid transparent;
+      cursor: pointer; transition: all 0.2s;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Eski tekil kart stili */
+    .project-card { background: var(--bg); padding: 2.5rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; transition: background 0.2s; }
+    .project-card:hover { background: var(--surface); }
+
+    /* Yeni 2-kolonlu kart grid */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .product-card { background: var(--bg); padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem; transition: background 0.2s; }
+    .product-card:hover { background: var(--surface); }
+    .product-card-header { display: flex; align-items: center; gap: 1rem; }
+    .product-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--accent); }
+    .badge-live { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #0d0d0d; background: var(--accent); padding: 0.2rem 0.6rem; font-weight: 500; margin-left: auto; }
+    .badge-wip { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2); border: 1px solid var(--accent2); padding: 0.2rem 0.6rem; margin-left: auto; }
+    .badge-appstore { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #0d0d0d; background: var(--accent); padding: 0.2rem 0.6rem; font-weight: 500; margin-left: auto; }
+    .product-desc { color: var(--muted); font-size: 12px; line-height: 1.8; flex: 1; }
+    .product-desc strong { color: var(--text); }
+    .tag-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .tag { font-size: 10px; color: var(--accent2); border: 1px solid var(--border); padding: 0.15rem 0.6rem; }
+
     #skills { background: var(--surface); border-top: 1px solid var(--border); }
     .skills-inner { max-width: 1100px; margin: 0 auto; }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .skill-item {
-      background: var(--surface);
-      padding: 1.5rem 1.8rem;
-      display: flex; flex-direction: column; gap: 0.4rem;
-      transition: background 0.2s;
-    }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .skill-item { background: var(--surface); padding: 1.5rem 1.8rem; display: flex; flex-direction: column; gap: 0.4rem; transition: background 0.2s; }
     .skill-item:hover { background: var(--bg); }
     .skill-name { font-size: 13px; color: var(--text); }
     .skill-tag { font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
-    .skill-bar {
-      height: 2px; background: var(--border); margin-top: 0.5rem;
-      overflow: hidden;
-    }
-    .skill-fill {
-      height: 100%; background: var(--accent);
-      transform: scaleX(0); transform-origin: left;
-      animation: fillBar 1s ease forwards;
-      animation-delay: var(--delay, 0s);
-    }
+    .skill-bar { height: 2px; background: var(--border); margin-top: 0.5rem; overflow: hidden; }
+    .skill-fill { height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; animation: fillBar 1s ease forwards; animation-delay: var(--delay, 0s); }
     @keyframes fillBar { to { transform: scaleX(1); } }
 
-    /* --- BLOG --- */
     #blog { border-top: 1px solid var(--border); }
     .blog-inner { max-width: 1100px; margin: 0 auto; }
-    .blog-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
-    }
-    .blog-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .blog-card {
-      background: var(--bg);
-      padding: 2rem;
-      display: flex; flex-direction: column; gap: 1rem;
-      transition: background 0.2s;
-      cursor: pointer;
-      text-decoration: none;
-    }
+    .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+    .blog-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .blog-card { background: var(--bg); padding: 2rem; display: flex; flex-direction: column; gap: 1rem; transition: background 0.2s; cursor: pointer; text-decoration: none; }
     .blog-card:hover { background: var(--surface); }
-    .blog-card-tag {
-      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent);
-    }
-    .blog-card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; color: var(--text); line-height: 1.4;
-    }
-    .blog-card-desc {
-      font-size: 12px; color: var(--muted); line-height: 1.7;
-      flex: 1;
-    }
-    .blog-card-meta {
-      font-size: 11px; color: var(--muted);
-      display: flex; gap: 1rem; align-items: center;
-      padding-top: 0.5rem; border-top: 1px solid var(--border);
-    }
-    .blog-loading {
-      grid-column: 1/-1; padding: 4rem;
-      text-align: center; color: var(--muted); font-size: 13px;
-    }
+    .blog-card-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+    .blog-card-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text); line-height: 1.4; }
+    .blog-card-desc { font-size: 12px; color: var(--muted); line-height: 1.7; flex: 1; }
+    .blog-card-meta { font-size: 11px; color: var(--muted); display: flex; gap: 1rem; align-items: center; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+    .blog-loading { grid-column: 1/-1; padding: 4rem; text-align: center; color: var(--muted); font-size: 13px; }
 
-    /* --- CONTACT --- */
-    #contact {
-      border-top: 1px solid var(--border);
-      text-align: center;
-      padding: 8rem 3rem;
-    }
+    #contact { border-top: 1px solid var(--border); text-align: center; padding: 8rem 3rem; }
     #contact h2 { margin-bottom: 1rem; }
     #contact p { color: var(--muted); max-width: 450px; margin: 0 auto 3rem; }
-    .contact-links {
-      display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
-    }
+    .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
 
-    /* --- FOOTER --- */
-    footer {
-      padding: 2rem 3rem;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 11px; color: var(--muted);
-      flex-wrap: wrap; gap: 1rem;
-    }
+    footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); flex-wrap: wrap; gap: 1rem; }
 
-    /* --- ANIMATIONS --- */
-    .fade-up {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    /* cursor glow */
-    .cursor-glow {
-      position: fixed; pointer-events: none; z-index: 9999;
-      width: 300px; height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,245,66,0.06) 0%, transparent 70%);
-      transform: translate(-50%, -50%);
-      transition: left 0.1s ease, top 0.1s ease;
-    }
+    .cursor-glow { position: fixed; pointer-events: none; z-index: 9999; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(200,245,66,0.06) 0%, transparent 70%); transform: translate(-50%, -50%); transition: left 0.1s ease, top 0.1s ease; }
 
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       section, #hero { padding: 5rem 1.5rem 3rem; }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .github-stats-img { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; text-align: center; }
+      .project-tabs { overflow-x: auto; }
     }
   </style>
 </head>
@@ -369,9 +184,7 @@
       Jira, Confluence, ScriptRunner, enterprise entegrasyonlar ve ekiplerin çalışma biçimini iyileştiren sistemler üzerine çalışıyorum.
     </p>
     <div class="hero-ctas">
-      <a href="#blog" class="btn btn-primary">
-        Yazılarıma Git →
-      </a>
+      <a href="#blog" class="btn btn-primary">Yazılarıma Git →</a>
       <a href="#github" class="btn btn-outline">Çalışmaları Gör</a>
     </div>
   </div>
@@ -388,15 +201,15 @@
       <div class="section-label">// hakkımda</div>
       <h2>Merhaba,<br>ben <em style="font-style:italic;color:var(--accent)">Buse</em></h2>
       <p>
-        Şu an <strong>Senior Software Developer</strong> olarak Jira Data Center, Confluence, ScriptRunner ve kurumsal süreç otomasyonları üzerine çalışıyorum. 
+        Şu an <strong>Senior Software Developer</strong> olarak Jira Data Center, Confluence, ScriptRunner ve kurumsal süreç otomasyonları üzerine çalışıyorum.
         Product Owner bakış açısını da teknik geliştirme deneyimimle birleştirerek ekiplerin daha iyi çalışmasını sağlayan sistemler tasarlıyorum.
       </p>
       <p>
-        Jira benim için yalnızca ticket takip edilen bir araç değil; ekiplerin nasıl çalıştığını, 
+        Jira benim için yalnızca ticket takip edilen bir araç değil; ekiplerin nasıl çalıştığını,
         kararların nasıl aktığını ve organizasyonların nasıl görünür hale geldiğini anlatan güçlü bir sistem.
       </p>
       <p>
-        Bu alanda edindiğim deneyimleri <strong>Jira'nın Derinliklerinde</strong> başlığıyla yazıya dökmeye, 
+        Bu alanda edindiğim deneyimleri <strong>Jira'nın Derinliklerinde</strong> başlığıyla yazıya dökmeye,
         AI ve otomasyonla da daha akıllı çalışma biçimleri tasarlamaya odaklanıyorum.
       </p>
     </div>
@@ -420,117 +233,230 @@
 <!-- PROJECTS -->
 <section id="github" style="max-width:none; padding: 7rem 3rem;">
   <div style="max-width:1100px; margin:0 auto;" class="fade-up">
+
     <div class="github-header">
       <div>
         <div class="section-label">// çalışmalar & ürünler</div>
-        <h2>Jira'nın<br>Mutfağından</h2>
+        <h2>Öne Çıkan<br>Çalışmalar</h2>
       </div>
-      <a href="https://medium.com/@busegenc" target="_blank" class="github-link">
-        Medium'a Git →
-      </a>
+      <a href="https://medium.com/@busegenc" target="_blank" class="github-link">Medium'a Git →</a>
     </div>
 
-    <!-- PROJECT CARDS -->
-    <div style="display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border);">
+    <!-- TABS -->
+    <div class="project-tabs">
+      <button class="tab-btn active" onclick="switchTab('jira')">⚙ Jira & Atlassian</button>
+      <button class="tab-btn" onclick="switchTab('products')">📦 Ürünler & Uygulamalar</button>
+    </div>
 
-      <div class="project-card" style="background:var(--bg); padding:2.5rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:start; transition:background 0.2s;" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
-        <div>
-          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-            <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Jira Data Center Governance</span>
-            <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#0d0d0d; background:var(--accent); padding:0.2rem 0.6rem; font-weight:500;">● AKTİF</span>
-          </div>
-          <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-            Jira Data Center ortamlarında workflow, custom field, permission, plugin ve süreç standardizasyonu üzerine çalışıyorum. 
-            Amacım yalnızca çalışan bir Jira kurmak değil; ekiplerin daha görünür, ölçülebilir ve sürdürülebilir çalışmasını sağlayan bir yapı tasarlamak.
-          </p>
-          <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Jira DC</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Confluence</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Governance</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Process Design</span>
-          </div>
-        </div>
-        <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-          <div style="font-size:2rem; margin-bottom:0.5rem;">⚙️</div>
-          Enterprise
-        </div>
-      </div>
+    <!-- TAB: JIRA -->
+    <div id="tab-jira" class="tab-panel active">
+      <div style="display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); border-top:none;">
 
-      <div class="project-card" style="background:var(--bg); padding:2.5rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:start; transition:background 0.2s;" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
-        <div>
-          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-            <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">ScriptRunner & Automation</span>
-            <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent2); border:1px solid var(--accent2); padding:0.2rem 0.6rem;">GROOVY</span>
+        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+          <div>
+            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
+              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Jira Data Center Governance</span>
+              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#0d0d0d; background:var(--accent); padding:0.2rem 0.6rem; font-weight:500;">● AKTİF</span>
+            </div>
+            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
+              Jira Data Center ortamlarında workflow, custom field, permission, plugin ve süreç standardizasyonu üzerine çalışıyorum.
+              Amacım yalnızca çalışan bir Jira kurmak değil; ekiplerin daha görünür, ölçülebilir ve sürdürülebilir çalışmasını sağlayan bir yapı tasarlamak.
+            </p>
+            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Jira DC</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Confluence</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Governance</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Process Design</span>
+            </div>
           </div>
-          <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-            Jira içerisinde post-function, listener, behaviour, custom endpoint ve scheduled job yapılarıyla iş kurallarını otomatikleştiriyorum. 
-            Release görünürlüğü, takım portföyü, iade sayısı, deployment kontrolleri ve entegrasyon ihtiyaçları bu mutfağın parçaları.
-          </p>
-          <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">ScriptRunner</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Groovy</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">REST Endpoints</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Listeners</span>
+          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">⚙️</div>
+            Enterprise
           </div>
         </div>
-        <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-          <div style="font-size:2rem; margin-bottom:0.5rem;">🧩</div>
-          Automation
-        </div>
-      </div>
 
-      <div class="project-card" style="background:var(--bg); padding:2.5rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:start; transition:background 0.2s;" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
-        <div>
-          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-            <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Jellyfish Routine</span>
-            <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#0d0d0d; background:var(--accent); padding:0.2rem 0.6rem; font-weight:500;">APP STORE</span>
+        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+          <div>
+            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
+              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">ScriptRunner & Automation</span>
+              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent2); border:1px solid var(--accent2); padding:0.2rem 0.6rem;">GROOVY</span>
+            </div>
+            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
+              Jira içerisinde post-function, listener, behaviour, custom endpoint ve scheduled job yapılarıyla iş kurallarını otomatikleştiriyorum.
+              Release görünürlüğü, takım portföyü, iade sayısı, deployment kontrolleri ve entegrasyon ihtiyaçları bu mutfağın parçaları.
+            </p>
+            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">ScriptRunner</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Groovy</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">REST Endpoints</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Listeners</span>
+            </div>
           </div>
-          <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-            App Store'a yüklediğim kişisel rutin ve alışkanlık takip uygulaması. Günlük akış, hatırlatıcılar ve zaman blokları üzerinden daha sürdürülebilir bir düzen kurmaya odaklanan bağımsız ürün denemem.
-          </p>
-          <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">iOS</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Habit Tracker</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Routine Design</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Indie Product</span>
-          </div>
-          <div style="display:flex; gap:1rem;">
-            <a href="https://apps.apple.com/search?term=Jellyfish%20Routine" target="_blank" class="btn btn-primary" style="font-size:11px; padding:0.6rem 1.2rem;">App Store'da Ara →</a>
+          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">🧩</div>
+            Automation
           </div>
         </div>
-        <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-          <div style="font-size:2rem; margin-bottom:0.5rem;">🪼</div>
-          Indie App
-        </div>
-      </div>
 
-      <div class="project-card" style="background:var(--bg); padding:2.5rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:start; transition:background 0.2s;" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
-        <div>
-          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-            <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Jira'nın Derinliklerinde</span>
-            <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent2); border:1px solid var(--accent2); padding:0.2rem 0.6rem;">MEDIUM SERİSİ</span>
+        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+          <div>
+            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
+              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Mihenk</span>
+              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#0d0d0d; background:var(--accent); padding:0.2rem 0.6rem; font-weight:500;">● AKTİF</span>
+            </div>
+            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
+              Jira içinde çalışan <strong style="color:var(--text)">AI destekli istek olgunluk değerlendirme paneli</strong>. Gelen talepleri otomatik analiz edip eksik bilgiyi kullanıcıya gösteriyor; kurumsal bankacılık ortamında ScriptRunner ve grup bazlı değerlendirme mimarisiyle çalışıyor.
+            </p>
+            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">ScriptRunner</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">AI Gateway</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Groovy</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Jira Panel</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">NLP Scoring</span>
+            </div>
           </div>
-          <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-            Jira'yı yalnızca bir ticket sistemi olarak değil; süreç, insan, teknik borç, entegrasyon ve organizasyonel hafıza katmanlarıyla ele alan Türkçe içerik serisi.
-            İlk yazı: “Jira Adminliği Serüvenim Nasıl Başladı?”
-          </p>
-          <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Writing</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Atlassian</span>
-            <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Deep Dive</span>
+          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">🤖</div>
+            AI + Jira
           </div>
-          <div style="display:flex; gap:1rem;">
+        </div>
+
+        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+          <div>
+            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
+              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Jira'nın Derinliklerinde</span>
+              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent2); border:1px solid var(--accent2); padding:0.2rem 0.6rem;">MEDIUM SERİSİ</span>
+            </div>
+            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
+              Jira'yı yalnızca bir ticket sistemi olarak değil; süreç, insan, teknik borç, entegrasyon ve organizasyonel hafıza katmanlarıyla ele alan Türkçe içerik serisi.
+              İlk yazı: "Jira Adminliği Serüvenim Nasıl Başladı?"
+            </p>
+            <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Writing</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Atlassian</span>
+              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Deep Dive</span>
+            </div>
             <a href="https://medium.com/@busegenc" target="_blank" class="btn btn-primary" style="font-size:11px; padding:0.6rem 1.2rem;">Medium'a Git →</a>
           </div>
+          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">✍️</div>
+            Writing
+          </div>
         </div>
-        <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-          <div style="font-size:2rem; margin-bottom:0.5rem;">✍️</div>
-          Writing
-        </div>
+
       </div>
+    </div>
 
-    </div>    </div>
+    <!-- TAB: PRODUCTS -->
+    <div id="tab-products" class="tab-panel">
+      <div class="product-grid" style="border-top:none;">
 
+        <!-- Sit Happens — APP STORE -->
+        <div class="product-card">
+          <div class="product-card-header">
+            <span style="font-size:1.8rem;">🚽</span>
+            <span class="product-card-title">Sit Happens</span>
+            <span class="badge-appstore">● APP STORE'DA</span>
+          </div>
+          <p class="product-desc">
+            Tuvalette telefona dalanlar için eğlenceli <strong>sayaç + hatırlatıcı</strong> uygulaması. Ne kadar süredir orada olduğunu fark ettiren, zamanın nasıl geçtiğini anlayamayanlar için tasarlandı. SwiftUI ile sıfırdan geliştirildi.
+          </p>
+          <div class="tag-row">
+            <span class="tag">SwiftUI</span>
+            <span class="tag">iOS</span>
+            <span class="tag">UNUserNotificationCenter</span>
+            <span class="tag">SwiftData</span>
+          </div>
+          <div style="margin-top:0.5rem;">
+            <a href="https://apps.apple.com/tr/app/sit-happens/id6794938801" target="_blank" class="btn btn-primary" style="font-size:11px; padding:0.5rem 1rem;">App Store'da Gör →</a>
+          </div>
+        </div>
+
+        <!-- Jellyfish Routine — APP STORE -->
+        <div class="product-card">
+          <div class="product-card-header">
+            <span style="font-size:1.8rem;">🪼</span>
+            <span class="product-card-title">Jellyfish Routine</span>
+            <span class="badge-appstore">● APP STORE'DA</span>
+          </div>
+          <p class="product-desc">
+            Günlük akış, hatırlatıcılar ve zaman blokları üzerinden <strong>daha sürdürülebilir bir düzen</strong> kurmaya odaklanan rutin ve alışkanlık takip uygulaması. Bağımsız ürün denemem.
+          </p>
+          <div class="tag-row">
+            <span class="tag">iOS</span>
+            <span class="tag">Habit Tracker</span>
+            <span class="tag">Routine Design</span>
+            <span class="tag">Indie Product</span>
+          </div>
+          <div style="margin-top:0.5rem;">
+            <a href="https://apps.apple.com/search?term=Jellyfish%20Routine" target="_blank" class="btn btn-primary" style="font-size:11px; padding:0.5rem 1rem;">App Store'da Ara →</a>
+          </div>
+        </div>
+
+        <!-- KoalaWeather — WIP -->
+        <div class="product-card">
+          <div class="product-card-header">
+            <span style="font-size:1.8rem;">🐨</span>
+            <span class="product-card-title">KoalaWeather</span>
+            <span class="badge-wip">⚙ GELİŞTİRİLİYOR</span>
+          </div>
+          <p class="product-desc">
+            Türk ailelere yönelik hava durumuna göre <strong>bebek & çocuk kıyafet önerisi</strong> yapan web uygulaması. Beş farklı yaş grubuna özel outfit algoritması.
+          </p>
+          <div class="tag-row">
+            <span class="tag">JavaScript</span>
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">Vercel</span>
+            <span class="tag">OpenWeather API</span>
+          </div>
+          <div style="margin-top:0.5rem;">
+            <a href="https://babydress.vercel.app" target="_blank" class="btn btn-primary" style="font-size:11px; padding:0.5rem 1rem;">Siteye Git →</a>
+          </div>
+        </div>
+
+        <!-- WatchPin — WIP -->
+        <div class="product-card">
+          <div class="product-card-header">
+            <span style="font-size:1.8rem;">🎬</span>
+            <span class="product-card-title">WatchPin</span>
+            <span class="badge-wip">⚙ GELİŞTİRİLİYOR</span>
+          </div>
+          <p class="product-desc">
+            Film ve dizileri <strong>hangi streaming platformunda izleyeceğini</strong> tek aramada bulan iOS uygulaması. TMDb API entegrasyonu, SwiftUI + MVVM mimarisi.
+          </p>
+          <div class="tag-row">
+            <span class="tag">SwiftUI</span>
+            <span class="tag">iOS</span>
+            <span class="tag">TMDb API</span>
+            <span class="tag">MVVM</span>
+          </div>
+          <div style="margin-top:0.5rem;">
+            <span style="font-size:11px; color:var(--muted); font-style:italic;">Yakında yayında...</span>
+          </div>
+        </div>
+
+        <!-- KoalaParent — WIP -->
+        <div class="product-card">
+          <div class="product-card-header">
+            <span style="font-size:1.8rem;">🌿</span>
+            <span class="product-card-title">KoalaParent</span>
+            <span class="badge-wip">⚙ GELİŞTİRİLİYOR</span>
+          </div>
+          <p class="product-desc">
+            Türk aileleri için tasarlanmış <strong>çok uygulamalı ebeveynlik platformu</strong>. KoalaWeather başlangıç noktası — bebek gelişimi, kıyafet önerisi ve daha fazlasını tek çatı altında toplayacak ekosistem.
+          </p>
+          <div class="tag-row">
+            <span class="tag">React</span>
+            <span class="tag">Mobile-First</span>
+            <span class="tag">Türk Pazarı</span>
+          </div>
+          <div style="margin-top:0.5rem;">
+            <span style="font-size:11px; color:var(--muted); font-style:italic;">Yakında yayında...</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
   </div>
 </section>
@@ -543,9 +469,7 @@
         <div class="section-label">// medium yazılar</div>
         <h2>Yazılarım</h2>
       </div>
-      <a href="https://medium.com/@busegenc" target="_blank" class="github-link">
-        Tümünü Oku →
-      </a>
+      <a href="https://medium.com/@busegenc" target="_blank" class="github-link">Tümünü Oku →</a>
     </div>
     <div class="blog-cards" id="blogCards">
       <div class="blog-loading" id="blogLoading">Yazılar yükleniyor...</div>
@@ -580,6 +504,11 @@
         <div class="skill-bar"><div class="skill-fill" style="--delay:0.25s; width:82%"></div></div>
       </div>
       <div class="skill-item">
+        <div class="skill-tag">Mobil</div>
+        <div class="skill-name">SwiftUI / iOS</div>
+        <div class="skill-bar"><div class="skill-fill" style="--delay:0.28s; width:75%"></div></div>
+      </div>
+      <div class="skill-item">
         <div class="skill-tag">Rol</div>
         <div class="skill-name">Senior Software Developer</div>
         <div class="skill-bar"><div class="skill-fill" style="--delay:0.3s; width:90%"></div></div>
@@ -604,7 +533,7 @@
         <div class="skill-name">AI & Automation</div>
         <div class="skill-bar"><div class="skill-fill" style="--delay:0.45s; width:78%"></div></div>
       </div>
-    </div>    </div>
+    </div>
   </div>
 </section>
 
@@ -625,20 +554,24 @@
 </footer>
 
 <script>
-  // Cursor glow
   const glow = document.getElementById('glow');
   document.addEventListener('mousemove', e => {
     glow.style.left = e.clientX + 'px';
     glow.style.top = e.clientY + 'px';
   });
 
-  // Intersection Observer fade-up
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // Medium RSS via rss2json
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+
   async function loadBlog() {
     const container = document.getElementById('blogCards');
     const loading = document.getElementById('blogLoading');
@@ -648,7 +581,6 @@
       if (data.status === 'ok' && data.items && data.items.length > 0) {
         container.innerHTML = '';
         data.items.forEach(item => {
-          // strip HTML from description
           const tmp = document.createElement('div');
           tmp.innerHTML = item.description;
           const desc = tmp.textContent.substring(0, 120) + '...';
@@ -677,8 +609,6 @@
     }
   }
   loadBlog();
-
-  // GitHub stats kaldırıldı; bu alan artık uzmanlık odaklı statik gösteriliyor.
 </script>
 </body>
 </html>
