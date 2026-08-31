@@ -3,56 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buse (Genç) Mut — Jira & Atlassian Portfolio</title>
+  <title>Buse (Genç) Mut</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d0d0d;
-      --surface: #141414;
-      --accent: #c8f542;
-      --accent2: #f5c842;
-      --text: #e8e4dc;
-      --muted: #666;
-      --border: #222;
+      --bg: #0d0d0d; --surface: #141414; --accent: #c8f542; --accent2: #f5c842;
+      --text: #e8e4dc; --muted: #666; --border: #222;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Mono', monospace;
-      font-size: 14px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; font-size: 14px; line-height: 1.7; overflow-x: hidden; }
 
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 3rem;
-      background: rgba(13,13,13,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 3rem; background: rgba(13,13,13,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent); letter-spacing: 0.05em; }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
 
+    /* LANG TOGGLE */
+    .lang-toggle { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .lang-btn { padding: 0.3rem 0.7rem; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; background: transparent; color: var(--muted); border: none; cursor: pointer; transition: all 0.15s; }
+    .lang-btn.active { background: var(--accent); color: #0d0d0d; font-weight: 500; }
+    .lang-btn:not(.active):hover { color: var(--text); }
+
+    /* HERO */
     #hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 3rem 4rem; position: relative; overflow: hidden; }
-    .hero-grid {
-      position: absolute; inset: 0; z-index: 0;
-      background-image: linear-gradient(rgba(200,245,66,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(200,245,66,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
+    .hero-grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(200,245,66,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(200,245,66,0.03) 1px, transparent 1px); background-size: 60px 60px; }
     .hero-content { position: relative; z-index: 1; max-width: 900px; }
     .hero-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
     .hero-label::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
-    h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 6rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; }
     h1 em { font-style: italic; color: var(--accent); }
-    .hero-sub { max-width: 480px; color: var(--muted); font-size: 13px; margin-bottom: 3rem; line-height: 1.8; }
+    .hero-role { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--accent2); font-family: 'Playfair Display', serif; font-style: italic; margin-bottom: 1.5rem; }
+    .hero-sub { max-width: 580px; color: var(--muted); font-size: 13px; margin-bottom: 3rem; line-height: 1.9; }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.8rem; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; }
     .btn-primary { background: var(--accent); color: #0d0d0d; font-weight: 500; }
@@ -61,14 +47,20 @@
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
     .scroll-indicator { position: absolute; bottom: 3rem; left: 3rem; display: flex; align-items: center; gap: 1rem; color: var(--muted); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
     .scroll-line { width: 40px; height: 1px; background: var(--muted); animation: scrollPulse 2s ease-in-out infinite; }
-    @keyframes scrollPulse { 0%, 100% { width: 40px; opacity: 0.4; } 50% { width: 70px; opacity: 1; } }
+    @keyframes scrollPulse { 0%,100%{width:40px;opacity:.4} 50%{width:70px;opacity:1} }
 
+    /* SHARED */
     section { padding: 7rem 3rem; }
     .section-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
     h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; margin-bottom: 3rem; }
+    .inner { max-width: 1100px; margin: 0 auto; }
+    .sec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+    .sec-link { display: flex; align-items: center; gap: 0.5rem; color: var(--accent); font-size: 12px; text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: gap 0.2s; }
+    .sec-link:hover { gap: 0.9rem; }
 
+    /* ABOUT */
     #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; max-width: 1100px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
     .about-text p { color: var(--muted); margin-bottom: 1.2rem; line-height: 1.9; }
     .about-text p strong { color: var(--text); }
     .stats-row { display: flex; flex-direction: column; gap: 2rem; padding-top: 1rem; }
@@ -76,85 +68,99 @@
     .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
     .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
 
-    .github-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
-    .github-link { display: flex; align-items: center; gap: 0.5rem; color: var(--accent); font-size: 12px; text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: gap 0.2s; }
-    .github-link:hover { gap: 0.9rem; }
-
-    /* --- PROJECT TABS --- */
-    .project-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
-    .tab-btn {
-      padding: 0.8rem 1.8rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-      background: transparent; color: var(--muted);
-      border: none; border-bottom: 2px solid transparent;
-      cursor: pointer; transition: all 0.2s;
-      margin-bottom: -1px;
-    }
+    /* TABS */
+    .project-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); }
+    .tab-btn { padding: 0.8rem 1.8rem; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; background: transparent; color: var(--muted); border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.2s; margin-bottom: -1px; }
     .tab-btn:hover { color: var(--text); }
     .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    /* Eski tekil kart stili */
-    .project-card { background: var(--bg); padding: 2.5rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; transition: background 0.2s; }
-    .project-card:hover { background: var(--surface); }
-
-    /* Yeni 2-kolonlu kart grid */
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .product-card { background: var(--bg); padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem; transition: background 0.2s; }
-    .product-card:hover { background: var(--surface); }
-    .product-card-header { display: flex; align-items: center; gap: 1rem; }
-    .product-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--accent); }
-    .badge-live { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #0d0d0d; background: var(--accent); padding: 0.2rem 0.6rem; font-weight: 500; margin-left: auto; }
-    .badge-wip { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2); border: 1px solid var(--accent2); padding: 0.2rem 0.6rem; margin-left: auto; }
-    .badge-appstore { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #0d0d0d; background: var(--accent); padding: 0.2rem 0.6rem; font-weight: 500; margin-left: auto; }
-    .product-desc { color: var(--muted); font-size: 12px; line-height: 1.8; flex: 1; }
-    .product-desc strong { color: var(--text); }
-    .tag-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    /* CASE CARDS */
+    .case-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-top: none; }
+    .case-card { background: var(--bg); padding: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem; transition: background 0.2s; }
+    .case-card:hover { background: var(--surface); }
+    .case-num { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+    .case-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text); line-height: 1.4; }
+    .case-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: -0.4rem; }
+    .case-text { font-size: 12px; color: var(--muted); line-height: 1.8; }
+    .case-text strong { color: var(--text); }
+    .tag-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .tag { font-size: 10px; color: var(--accent2); border: 1px solid var(--border); padding: 0.15rem 0.6rem; }
+    .case-footer { padding-top: 0.8rem; border-top: 1px solid var(--border); }
+    .status-sanitize { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2); }
+    .status-progress { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
 
-    #skills { background: var(--surface); border-top: 1px solid var(--border); }
-    .skills-inner { max-width: 1100px; margin: 0 auto; }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .skill-item { background: var(--surface); padding: 1.5rem 1.8rem; display: flex; flex-direction: column; gap: 0.4rem; transition: background 0.2s; }
-    .skill-item:hover { background: var(--bg); }
-    .skill-name { font-size: 13px; color: var(--text); }
+    /* JIRA LIST */
+    .jira-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-top: none; }
+    .jira-card { background: var(--bg); padding: 2rem 2.5rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; transition: background 0.2s; }
+    .jira-card:hover { background: var(--surface); }
+    .jira-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--accent); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+    .badge-active { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #0d0d0d; background: var(--accent); padding: 0.15rem 0.5rem; font-weight: 500; }
+    .badge-wip { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); border: 1px solid var(--accent2); padding: 0.15rem 0.5rem; }
+    .badge-series { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); border: 1px solid var(--accent2); padding: 0.15rem 0.5rem; }
+    .jira-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 640px; margin-bottom: 1rem; }
+    .jira-desc strong { color: var(--text); }
+    .jira-meta { text-align: right; color: var(--muted); font-size: 11px; white-space: nowrap; }
+    .jira-meta-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+
+    /* PRODUCTS */
+    #products { background: var(--surface); border-top: 1px solid var(--border); }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .product-card { background: var(--surface); padding: 2rem; display: flex; flex-direction: column; gap: 0.9rem; transition: background 0.2s; }
+    .product-card:hover { background: var(--bg); }
+    .product-header { display: flex; align-items: center; gap: 0.8rem; }
+    .product-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--accent); }
+    .badge-appstore { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #0d0d0d; background: var(--accent); padding: 0.15rem 0.5rem; font-weight: 500; margin-left: auto; white-space: nowrap; }
+    .badge-dev { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); border: 1px solid var(--accent2); padding: 0.15rem 0.5rem; margin-left: auto; white-space: nowrap; }
+    .badge-oss { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.15rem 0.5rem; margin-left: auto; white-space: nowrap; }
+    .badge-private { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); padding: 0.15rem 0.5rem; margin-left: auto; white-space: nowrap; }
+    .product-desc { font-size: 12px; color: var(--muted); line-height: 1.8; flex: 1; }
+    .product-desc strong { color: var(--text); }
+
+    /* SKILLS */
+    #skills { border-top: 1px solid var(--border); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .skill-item { background: var(--bg); padding: 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.4rem; transition: background 0.2s; }
+    .skill-item:hover { background: var(--surface); }
+    .skill-name { font-size: 12px; color: var(--text); }
     .skill-tag { font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
     .skill-bar { height: 2px; background: var(--border); margin-top: 0.5rem; overflow: hidden; }
-    .skill-fill { height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; animation: fillBar 1s ease forwards; animation-delay: var(--delay, 0s); }
+    .skill-fill { height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; animation: fillBar 1s ease forwards; animation-delay: var(--delay,0s); }
     @keyframes fillBar { to { transform: scaleX(1); } }
+    .skill-building { font-size: 10px; color: var(--accent2); margin-top: 0.2rem; }
 
-    #blog { border-top: 1px solid var(--border); }
-    .blog-inner { max-width: 1100px; margin: 0 auto; }
-    .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
-    .blog-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .blog-card { background: var(--bg); padding: 2rem; display: flex; flex-direction: column; gap: 1rem; transition: background 0.2s; cursor: pointer; text-decoration: none; }
-    .blog-card:hover { background: var(--surface); }
+    /* BLOG */
+    #blog { background: var(--surface); border-top: 1px solid var(--border); }
+    .blog-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .blog-card { background: var(--surface); padding: 2rem; display: flex; flex-direction: column; gap: 1rem; transition: background 0.2s; text-decoration: none; }
+    .blog-card:hover { background: var(--bg); }
     .blog-card-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
-    .blog-card-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text); line-height: 1.4; }
+    .blog-card-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--text); line-height: 1.4; }
     .blog-card-desc { font-size: 12px; color: var(--muted); line-height: 1.7; flex: 1; }
     .blog-card-meta { font-size: 11px; color: var(--muted); display: flex; gap: 1rem; align-items: center; padding-top: 0.5rem; border-top: 1px solid var(--border); }
     .blog-loading { grid-column: 1/-1; padding: 4rem; text-align: center; color: var(--muted); font-size: 13px; }
 
+    /* CONTACT */
     #contact { border-top: 1px solid var(--border); text-align: center; padding: 8rem 3rem; }
     #contact h2 { margin-bottom: 1rem; }
-    #contact p { color: var(--muted); max-width: 450px; margin: 0 auto 3rem; }
-    .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    #contact p { color: var(--muted); max-width: 560px; margin: 0 auto 3rem; line-height: 1.9; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 
     footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); flex-wrap: wrap; gap: 1rem; }
 
     .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
-    .cursor-glow { position: fixed; pointer-events: none; z-index: 9999; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(200,245,66,0.06) 0%, transparent 70%); transform: translate(-50%, -50%); transition: left 0.1s ease, top 0.1s ease; }
+    .cursor-glow { position: fixed; pointer-events: none; z-index: 9999; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(200,245,66,0.06) 0%, transparent 70%); transform: translate(-50%,-50%); transition: left 0.1s ease, top 0.1s ease; }
 
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
       section, #hero { padding: 5rem 1.5rem 3rem; }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .product-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; }
+      .case-grid, .product-grid { grid-template-columns: 1fr; }
       .project-tabs { overflow-x: auto; }
+      footer { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
@@ -164,12 +170,19 @@
 
 <nav>
   <div class="nav-logo">BG</div>
-  <div class="nav-links">
-    <a href="#about">Hakkımda</a>
-    <a href="#github">Projeler</a>
-    <a href="#blog">Yazılar</a>
-    <a href="#skills">Yetenekler</a>
-    <a href="#contact">İletişim</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#about" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+      <a href="#enterprise" data-tr="Enterprise" data-en="Enterprise">Enterprise</a>
+      <a href="#products" data-tr="Ürünler" data-en="Products">Ürünler</a>
+      <a href="#skills" data-tr="Uzmanlık" data-en="Expertise">Uzmanlık</a>
+      <a href="#blog" data-tr="Yazılar" data-en="Writing">Yazılar</a>
+      <a href="#contact" data-tr="İletişim" data-en="Contact">İletişim</a>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
   </div>
 </nav>
 
@@ -177,516 +190,357 @@
 <section id="hero">
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-label">Jira • Atlassian • Process Design</div>
+    <div class="hero-label" data-tr="Atlassian · Jira DC · Ürün Geliştirici" data-en="Atlassian · Jira DC · Product Builder">Atlassian · Jira DC · Ürün Geliştirici</div>
     <h1>Buse<br><em>(Genç) Mut</em></h1>
-    <p class="hero-sub">
-      Senior Software Developer, Jira Data Center Specialist ve süreç tasarımına meraklı bir üretici.<br>
-      Jira, Confluence, ScriptRunner, enterprise entegrasyonlar ve ekiplerin çalışma biçimini iyileştiren sistemler üzerine çalışıyorum.
-    </p>
+    <div class="hero-role" data-tr="Atlassian Çözüm Mühendisi & Ürün Geliştirici" data-en="Atlassian Solutions Engineer & Product Builder">Atlassian Çözüm Mühendisi & Ürün Geliştirici</div>
+    <p class="hero-sub" data-tr="Karmaşık kurumsal Jira problemlerini otomasyon, özel geliştirme ve migrasyon odaklı mimari ile çözüyorum — aynı zamanda bağımsız dijital ürünler geliştiriyorum." data-en="I solve complex enterprise Jira problems through automation, custom development and migration-ready architecture — while also building independent digital products.">Karmaşık kurumsal Jira problemlerini otomasyon, özel geliştirme ve migrasyon odaklı mimari ile çözüyorum — aynı zamanda bağımsız dijital ürünler geliştiriyorum.</p>
     <div class="hero-ctas">
-      <a href="#blog" class="btn btn-primary">Yazılarıma Git →</a>
-      <a href="#github" class="btn btn-outline">Çalışmaları Gör</a>
+      <a href="#enterprise" class="btn btn-primary" data-tr="Enterprise Çalışmalar →" data-en="Enterprise Case Studies →">Enterprise Çalışmalar →</a>
+      <a href="#products" class="btn btn-outline" data-tr="Bağımsız Ürünler" data-en="Independent Products">Bağımsız Ürünler</a>
     </div>
   </div>
   <div class="scroll-indicator">
     <div class="scroll-line"></div>
-    Aşağı kaydır
+    <span data-tr="Aşağı kaydır" data-en="Scroll down">Aşağı kaydır</span>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-grid fade-up">
+  <div class="inner about-grid fade-up">
     <div class="about-text">
-      <div class="section-label">// hakkımda</div>
-      <h2>Merhaba,<br>ben <em style="font-style:italic;color:var(--accent)">Buse</em></h2>
-      <p>
-        Şu an <strong>Senior Software Developer</strong> olarak Jira Data Center, Confluence, ScriptRunner ve kurumsal süreç otomasyonları üzerine çalışıyorum.
-        Product Owner bakış açısını da teknik geliştirme deneyimimle birleştirerek ekiplerin daha iyi çalışmasını sağlayan sistemler tasarlıyorum.
-      </p>
-      <p>
-        Jira benim için yalnızca ticket takip edilen bir araç değil; ekiplerin nasıl çalıştığını,
-        kararların nasıl aktığını ve organizasyonların nasıl görünür hale geldiğini anlatan güçlü bir sistem.
-      </p>
-      <p>
-        Bu alanda edindiğim deneyimleri <strong>Jira'nın Derinliklerinde</strong> başlığıyla yazıya dökmeye,
-        AI ve otomasyonla da daha akıllı çalışma biçimleri tasarlamaya odaklanıyorum.
-      </p>
+      <div class="section-label" data-tr="// hakkımda" data-en="// about">// hakkımda</div>
+      <h2 data-tr="Merhaba,<br>ben <em>Buse</em>" data-en="Hello,<br>I'm <em>Buse</em>">Merhaba,<br>ben <em style="font-style:italic;color:var(--accent)">Buse</em></h2>
+      <p data-tr="<strong>Senior Software Developer</strong> olarak Jira Data Center mimarisi, özel plugin geliştirme, ScriptRunner otomasyonları ve kurumsal süreç tasarımı üzerine çalışıyorum." data-en="I work as a <strong>Senior Software Developer</strong> specialising in Jira Data Center architecture, custom plugin development, ScriptRunner automation and enterprise process design."><strong>Senior Software Developer</strong> olarak Jira Data Center mimarisi, özel plugin geliştirme, ScriptRunner otomasyonları ve kurumsal süreç tasarımı üzerine çalışıyorum.</p>
+      <p data-tr="Jira benim için yalnızca bir ticket sistemi değil — ekiplerin nasıl çalıştığını, kararların nasıl aktığını ve organizasyonların nasıl görünür hale geldiğini anlatan karmaşık bir sistem. Bu sistemi hem teknik hem ürün perspektifinden görüyorum." data-en="Jira is not just a ticket system for me — it is a complex system that reveals how teams work, how decisions flow and how organisations become visible. I see it from both a technical and product perspective.">Jira benim için yalnızca bir ticket sistemi değil — ekiplerin nasıl çalıştığını, kararların nasıl aktığını ve organizasyonların nasıl görünür hale geldiğini anlatan karmaşık bir sistem. Bu sistemi hem teknik hem ürün perspektifinden görüyorum.</p>
+      <p data-tr="Kurumsal Jira deneyimimi bağımsız dijital ürünler geliştirme tutkusuyla birleştiriyorum. Enterprise sorunları çözmenin yanı sıra kendi ürünlerimi de sıfırdan tasarlayıp yayınlıyorum." data-en="I combine my enterprise Jira expertise with a passion for building independent digital products — designing and shipping my own apps alongside solving complex enterprise challenges.">Kurumsal Jira deneyimimi bağımsız dijital ürünler geliştirme tutkusuyla birleştiriyorum. Enterprise sorunları çözmenin yanı sıra kendi ürünlerimi de sıfırdan tasarlayıp yayınlıyorum.</p>
     </div>
     <div class="stats-row">
       <div class="stat">
         <div class="stat-num">5+</div>
-        <div class="stat-label">Yıl Atlassian Deneyimi</div>
+        <div class="stat-label" data-tr="Yıl Atlassian Deneyimi" data-en="Years Atlassian Experience">Yıl Atlassian Deneyimi</div>
       </div>
       <div class="stat">
         <div class="stat-num">DC</div>
-        <div class="stat-label">Jira Data Center Odağı</div>
+        <div class="stat-label" data-tr="Jira Data Center Odağı" data-en="Jira Data Center Focus">Jira Data Center Odağı</div>
       </div>
       <div class="stat">
-        <div class="stat-num">AI</div>
-        <div class="stat-label">Otomasyon & Üretim Merakı</div>
+        <div class="stat-num">2×</div>
+        <div class="stat-label" data-tr="App Store Uygulaması" data-en="App Store Apps">App Store Uygulaması</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="github" style="max-width:none; padding: 7rem 3rem;">
-  <div style="max-width:1100px; margin:0 auto;" class="fade-up">
-
-    <div class="github-header">
+<!-- ENTERPRISE -->
+<section id="enterprise">
+  <div class="inner fade-up">
+    <div class="sec-header">
       <div>
-        <div class="section-label">// çalışmalar & ürünler</div>
-        <h2>Öne Çıkan<br>Çalışmalar</h2>
+        <div class="section-label" data-tr="// enterprise atlassian" data-en="// enterprise atlassian">// enterprise atlassian</div>
+        <h2 data-tr="Case Studies" data-en="Case Studies">Case Studies</h2>
       </div>
-      <a href="https://medium.com/@busegenc" target="_blank" class="github-link">Medium'a Git →</a>
     </div>
-
-    <!-- TABS -->
     <div class="project-tabs">
-      <button class="tab-btn active" onclick="switchTab('jira')">⚙ Jira & Atlassian</button>
-      <button class="tab-btn" onclick="switchTab('products')">📦 Ürünler & Uygulamalar</button>
+      <button class="tab-btn active" onclick="switchTab('cases',this)" data-tr="📋 Case Studies" data-en="📋 Case Studies">📋 Case Studies</button>
+      <button class="tab-btn" onclick="switchTab('jira',this)" data-tr="⚙ Jira & Atlassian" data-en="⚙ Jira & Atlassian">⚙ Jira & Atlassian</button>
     </div>
 
-    <!-- TAB: JIRA -->
-    <div id="tab-jira" class="tab-panel active">
-      <div style="display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); border-top:none;">
+    <!-- CASE STUDIES TAB -->
+    <div id="tab-cases" class="tab-panel active">
+      <div class="case-grid">
 
-        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+        <div class="case-card">
+          <div class="case-num">Case 01</div>
+          <div class="case-title" data-tr="Desteksiz Bir Jira DC Plugin'ini Mevcut Veriyi Bozmadan Değiştirmek" data-en="Replacing an Unsupported Jira DC Plugin Without Breaking Existing Data">Desteksiz Bir Jira DC Plugin'ini Mevcut Veriyi Bozmadan Değiştirmek</div>
           <div>
-            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Jira Data Center Governance</span>
-              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#0d0d0d; background:var(--accent); padding:0.2rem 0.6rem; font-weight:500;">● AKTİF</span>
-            </div>
-            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-              Jira Data Center ortamlarında workflow, custom field, permission, plugin ve süreç standardizasyonu üzerine çalışıyorum.
-              Amacım yalnızca çalışan bir Jira kurmak değil; ekiplerin daha görünür, ölçülebilir ve sürdürülebilir çalışmasını sağlayan bir yapı tasarlamak.
-            </p>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Jira DC</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Confluence</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Governance</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Process Design</span>
-            </div>
+            <div class="case-label" data-tr="Problem" data-en="Problem">Problem</div>
+            <p class="case-text" data-tr="Kritik bir Jira plugin'i desteksiz hale geldi ve büyük bir Data Center yükseltmesini engelledi. Binlerce kayıt bu field'ın veri modeline bağımlıydı." data-en="A critical Jira plugin became unsupported and blocked a major Data Center upgrade. Thousands of existing records depended on the field's data model.">Kritik bir Jira plugin'i desteksiz hale geldi ve büyük bir Data Center yükseltmesini engelledi. Binlerce kayıt bu field'ın veri modeline bağımlıydı.</p>
           </div>
-          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-            <div style="font-size:2rem; margin-bottom:0.5rem;">⚙️</div>
-            Enterprise
+          <div>
+            <div class="case-label" data-tr="Ne Yaptım" data-en="What I Did">Ne Yaptım</div>
+            <p class="case-text" data-tr="Eski field yapısını analiz ettim, veri uyumluluğunu koruyan <strong>özel Java replacement</strong> tasarladım ve veri kaybı olmadan kontrollü migrasyon koordine ettim." data-en="Analysed the legacy field structure, designed a <strong>custom Java replacement</strong> maintaining data compatibility, and coordinated a controlled migration without data loss.">Eski field yapısını analiz ettim, veri uyumluluğunu koruyan <strong>özel Java replacement</strong> tasarladım ve veri kaybı olmadan kontrollü migrasyon koordine ettim.</p>
           </div>
+          <div class="tag-row"><span class="tag">Jira DC</span><span class="tag">Java</span><span class="tag">Custom Field</span><span class="tag">Migration</span><span class="tag">JNDI/SQL</span></div>
+          <div class="case-footer"><span class="status-sanitize" data-tr="⚠ Sanitize Ediliyor" data-en="⚠ Sanitizing">⚠ Sanitize Ediliyor</span></div>
         </div>
 
-        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+        <div class="case-card">
+          <div class="case-num">Case 02</div>
+          <div class="case-title" data-tr="Enterprise Jira DC Büyük Sürüm Yükseltmesi & Script Modernizasyonu" data-en="Enterprise Jira DC Major Upgrade & Script Modernisation">Enterprise Jira DC Büyük Sürüm Yükseltmesi & Script Modernizasyonu</div>
           <div>
-            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">ScriptRunner & Automation</span>
-              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent2); border:1px solid var(--accent2); padding:0.2rem 0.6rem;">GROOVY</span>
-            </div>
-            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-              Jira içerisinde post-function, listener, behaviour, custom endpoint ve scheduled job yapılarıyla iş kurallarını otomatikleştiriyorum.
-              Release görünürlüğü, takım portföyü, iade sayısı, deployment kontrolleri ve entegrasyon ihtiyaçları bu mutfağın parçaları.
-            </p>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">ScriptRunner</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Groovy</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">REST Endpoints</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Listeners</span>
-            </div>
+            <div class="case-label" data-tr="Problem" data-en="Problem">Problem</div>
+            <p class="case-text" data-tr="Büyük bir Jira DC instance'ı iki ortamda major versiyon yükseltmesi gerektiriyordu. Yüzlerce ScriptRunner script, Behaviour ve Listener uyumluluk değerlendirmesine ihtiyaç duyuyordu." data-en="A large Jira DC instance required a major version upgrade across two environments. Hundreds of ScriptRunner scripts, Behaviours and Listeners needed compatibility assessment.">Büyük bir Jira DC instance'ı iki ortamda major versiyon yükseltmesi gerektiriyordu. Yüzlerce ScriptRunner script, Behaviour ve Listener uyumluluk değerlendirmesine ihtiyaç duyuyordu.</p>
           </div>
-          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-            <div style="font-size:2rem; margin-bottom:0.5rem;">🧩</div>
-            Automation
+          <div>
+            <div class="case-label" data-tr="Ne Yaptım" data-en="What I Did">Ne Yaptım</div>
+            <p class="case-text" data-tr="Uyumluluk değerlendirmesini yürüttüm, Groovy script'lerindeki kırıcı değişiklikleri giderdim ve sıfır kritik hatayla <strong>çift ortam rollout</strong>'unu koordine ettim." data-en="Led compatibility assessment, remediated breaking changes in Groovy scripts and coordinated <strong>dual-environment rollout</strong> with zero critical incidents.">Uyumluluk değerlendirmesini yürüttüm, Groovy script'lerindeki kırıcı değişiklikleri giderdim ve sıfır kritik hatayla <strong>çift ortam rollout</strong>'unu koordine ettim.</p>
           </div>
+          <div class="tag-row"><span class="tag">Jira DC</span><span class="tag">ScriptRunner</span><span class="tag">Groovy</span><span class="tag">Upgrade</span><span class="tag">Rollout</span></div>
+          <div class="case-footer"><span class="status-sanitize" data-tr="⚠ Sanitize Ediliyor" data-en="⚠ Sanitizing">⚠ Sanitize Ediliyor</span></div>
         </div>
 
-        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+        <div class="case-card">
+          <div class="case-num">Case 03</div>
+          <div class="case-title" data-tr="Yavaş Dinamik Jira Field'ını Enterprise Ölçeği için Yeniden Tasarlamak" data-en="Redesigning a Slow Dynamic Jira Field for Enterprise-Scale Performance">Yavaş Dinamik Jira Field'ını Enterprise Ölçeği için Yeniden Tasarlamak</div>
           <div>
-            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Mihenk</span>
-              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#0d0d0d; background:var(--accent); padding:0.2rem 0.6rem; font-weight:500;">● AKTİF</span>
-            </div>
-            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-              Jira içinde çalışan <strong style="color:var(--text)">AI destekli istek olgunluk değerlendirme paneli</strong>. Gelen talepleri otomatik analiz edip eksik bilgiyi kullanıcıya gösteriyor; kurumsal bankacılık ortamında ScriptRunner ve grup bazlı değerlendirme mimarisiyle çalışıyor.
-            </p>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">ScriptRunner</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">AI Gateway</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Groovy</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Jira Panel</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">NLP Scoring</span>
-            </div>
+            <div class="case-label" data-tr="Problem" data-en="Problem">Problem</div>
+            <p class="case-text" data-tr="Dinamik bir dropdown field, enterprise ölçeğinde ciddi performans sorunlarına yol açıyordu — yüksek trafikli Jira board'larında yavaş sayfa yüklemesi ve timeout hataları." data-en="A dynamic dropdown field caused significant performance degradation at enterprise scale — slow page loads and timeout errors on high-traffic Jira boards.">Dinamik bir dropdown field, enterprise ölçeğinde ciddi performans sorunlarına yol açıyordu — yüksek trafikli Jira board'larında yavaş sayfa yüklemesi ve timeout hataları.</p>
           </div>
-          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-            <div style="font-size:2rem; margin-bottom:0.5rem;">🤖</div>
-            AI + Jira
+          <div>
+            <div class="case-label" data-tr="Ne Yaptım" data-en="What I Did">Ne Yaptım</div>
+            <p class="case-text" data-tr="Field'ı <strong>sorumluluk ayrımı, TTL tabanlı önbellekleme ve optimize SQL sorguları</strong> ile yeniden tasarladım — timeout'ları ortadan kaldırdım ve render hızını iyileştirdim." data-en="Redesigned the field with <strong>responsibility separation, TTL-based caching and optimised SQL queries</strong> — eliminating timeouts and improving render speed.">Field'ı <strong>sorumluluk ayrımı, TTL tabanlı önbellekleme ve optimize SQL sorguları</strong> ile yeniden tasarladım — timeout'ları ortadan kaldırdım ve render hızını iyileştirdim.</p>
           </div>
+          <div class="tag-row"><span class="tag">Jira DC</span><span class="tag">Java</span><span class="tag">SQL</span><span class="tag">Performance</span><span class="tag">Cache</span></div>
+          <div class="case-footer"><span class="status-sanitize" data-tr="⚠ Sanitize Ediliyor" data-en="⚠ Sanitizing">⚠ Sanitize Ediliyor</span></div>
         </div>
 
-        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+        <div class="case-card">
+          <div class="case-num">Case 04</div>
+          <div class="case-title" data-tr="Jira için AI Destekli Story Point Tahminleme Plugin'i Geliştirmek" data-en="Building an AI-Assisted Story Point Estimation Plugin for Jira">Jira için AI Destekli Story Point Tahminleme Plugin'i Geliştirmek</div>
           <div>
-            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Database Select Field Plugin</span>
-              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#0d0d0d; background:var(--accent); padding:0.2rem 0.6rem; font-weight:500;">● AKTİF</span>
-            </div>
-            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-              JNDI datasource ve SQL query ile dropdown/autocomplete seçeneklerini dinamik dolduran <strong style="color:var(--text)">custom field plugin</strong>. Select List ve Autocomplete render modları, multiple values, TTL'li cache ve "None" seçeneği desteğiyle geliyor. Tek JAR ile Jira Data Center 8.5.x ve 9.x'te çalışır.
-            </p>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Jira Plugin</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Java</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">JNDI / SQL</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Custom Field</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">DC 8.5.x & 9.x</span>
-            </div>
+            <div class="case-label" data-tr="Problem" data-en="Problem">Problem</div>
+            <p class="case-text" data-tr="Story point tahminlemesi ekipler arasında tutarsızdı — Jira içinde herhangi bir geçmiş bağlamı olmaksızın bireysel deneyime ağırlıklı olarak bağımlıydı." data-en="Story point estimation was inconsistent across teams — heavily dependent on individual experience with no historical context surfaced inside Jira.">Story point tahminlemesi ekipler arasında tutarsızdı — Jira içinde herhangi bir geçmiş bağlamı olmaksızın bireysel deneyime ağırlıklı olarak bağımlıydı.</p>
           </div>
-          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-            <div style="font-size:2rem; margin-bottom:0.5rem;">🗄️</div>
-            Plugin
+          <div>
+            <div class="case-label" data-tr="Ne Yaptım" data-en="What I Did">Ne Yaptım</div>
+            <p class="case-text" data-tr="Geçmiş issue'ları analiz edip Fibonacci ölçeğinde tahmin öneren <strong>Jira-native AI plugin</strong> geliştirdim. Human-in-the-loop: geliştiriciler onayladıktan sonra field güncelleniyor." data-en="Built a <strong>Jira-native AI plugin</strong> that analyses historical issues and suggests Fibonacci-scale estimates. Human-in-the-loop: developers review and confirm before the field is updated.">Geçmiş issue'ları analiz edip Fibonacci ölçeğinde tahmin öneren <strong>Jira-native AI plugin</strong> geliştirdim. Human-in-the-loop: geliştiriciler onayladıktan sonra field güncelleniyor.</p>
           </div>
+          <div class="tag-row"><span class="tag">Jira DC</span><span class="tag">Java</span><span class="tag">AI</span><span class="tag">ScriptRunner</span><span class="tag">Fibonacci</span></div>
+          <div class="case-footer"><span class="status-sanitize" data-tr="⚠ Sanitize Ediliyor" data-en="⚠ Sanitizing">⚠ Sanitize Ediliyor</span></div>
         </div>
 
-        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
+        <div class="case-card">
+          <div class="case-num">Case 05</div>
+          <div class="case-title" data-tr="Jira için Sprint Kapasite Planlama Uygulaması Geliştirmek" data-en="Building a Sprint Capacity Planning App for Jira">Jira için Sprint Kapasite Planlama Uygulaması Geliştirmek</div>
           <div>
-            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Story Point Tahminleme Plugin</span>
-              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#0d0d0d; background:var(--accent); padding:0.2rem 0.6rem; font-weight:500;">● AKTİF</span>
-            </div>
-            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-              Geçmiş Jira issue'larından öğrenerek yeni ticket'lara <strong style="color:var(--text)">AI destekli story point tahmini</strong> öneren Jira plugin'i. Benzer issue'ları analiz ederek Fibonacci ölçeğinde öneri üretir; geliştirici onayıyla field'a yazar.
-            </p>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Jira Plugin</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Java</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">AI</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Fibonacci</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">ScriptRunner</span>
-            </div>
+            <div class="case-label" data-tr="Problem" data-en="Problem">Problem</div>
+            <p class="case-text" data-tr="Sprint planlaması izin, eğitim günleri veya geçmiş teslimat hızları dikkate alınmadan manuel yapılıyordu — bu da sürekli aşırı yüklenmiş sprintlere yol açıyordu." data-en="Sprint planning was done manually, without accounting for leave, training days or historical delivery rates — leading to consistently over-committed sprints.">Sprint planlaması izin, eğitim günleri veya geçmiş teslimat hızları dikkate alınmadan manuel yapılıyordu — bu da sürekli aşırı yüklenmiş sprintlere yol açıyordu.</p>
           </div>
-          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-            <div style="font-size:2rem; margin-bottom:0.5rem;">🎯</div>
-            AI + Plugin
-          </div>
-        </div>
-
-        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
           <div>
-            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Capacity Planner</span>
-              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent2); border:1px solid var(--accent2); padding:0.2rem 0.6rem;">⚙ GELİŞTİRİLİYOR</span>
-            </div>
-            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-              Jira üzerinde takım kapasitesini sprint bazında görünür kılan <strong style="color:var(--text)">kapasite planlama aracı</strong>. İzin, toplantı ve odak sürelerini hesaba katarak ekibin gerçek kapasitesini ortaya çıkarır.
-            </p>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Jira DC</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">ScriptRunner</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Sprint Planning</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Groovy</span>
-            </div>
+            <div class="case-label" data-tr="Ne Yaptım" data-en="What I Did">Ne Yaptım</div>
+            <p class="case-text" data-tr="Ekip müsaitliğini, planlanan devamsızlıkları ve geçmiş teslimat verilerini hesaba katarak gerçekçi sprint kapasitesini ortaya çıkaran <strong>Jira entegre kapasite planlayıcısı</strong> geliştiriyorum." data-en="Building a <strong>Jira-integrated capacity planner</strong> that factors in team availability, planned absences and historical delivery data to surface realistic sprint capacity.">Ekip müsaitliğini, planlanan devamsızlıkları ve geçmiş teslimat verilerini hesaba katarak gerçekçi sprint kapasitesini ortaya çıkaran <strong>Jira entegre kapasite planlayıcısı</strong> geliştiriyorum.</p>
           </div>
-          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-            <div style="font-size:2rem; margin-bottom:0.5rem;">📊</div>
-            Planning
-          </div>
-        </div>
-
-        <div class="project-card" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--bg)'">
-          <div>
-            <div style="display:flex; align-items:center; gap:1rem; margin-bottom:0.8rem;">
-              <span style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent);">Jira'nın Derinliklerinde</span>
-              <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent2); border:1px solid var(--accent2); padding:0.2rem 0.6rem;">MEDIUM SERİSİ</span>
-            </div>
-            <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:640px; margin-bottom:1.5rem;">
-              Jira'yı yalnızca bir ticket sistemi olarak değil; süreç, insan, teknik borç, entegrasyon ve organizasyonel hafıza katmanlarıyla ele alan Türkçe içerik serisi.
-              İlk yazı: "Jira Adminliği Serüvenim Nasıl Başladı?"
-            </p>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Writing</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Atlassian</span>
-              <span style="font-size:11px; color:var(--accent2); border:1px solid var(--border); padding:0.2rem 0.7rem;">Deep Dive</span>
-            </div>
-            <a href="https://medium.com/@busegenc" target="_blank" class="btn btn-primary" style="font-size:11px; padding:0.6rem 1.2rem;">Medium'a Git →</a>
-          </div>
-          <div style="text-align:right; color:var(--muted); font-size:11px; white-space:nowrap;">
-            <div style="font-size:2rem; margin-bottom:0.5rem;">✍️</div>
-            Writing
-          </div>
+          <div class="tag-row"><span class="tag">Jira DC</span><span class="tag">ScriptRunner</span><span class="tag">Groovy</span><span class="tag">Sprint Planning</span></div>
+          <div class="case-footer"><span class="status-progress" data-tr="⚙ Geliştiriliyor — Demo Yeniden Yapılanıyor" data-en="⚙ In Progress — Demo Rebuild">⚙ Geliştiriliyor — Demo Yeniden Yapılanıyor</span></div>
         </div>
 
       </div>
     </div>
 
-    <!-- TAB: PRODUCTS -->
-    <div id="tab-products" class="tab-panel">
-      <div class="product-grid" style="border-top:none;">
-
-        <!-- Sit Happens — APP STORE -->
-        <div class="product-card">
-          <div class="product-card-header">
-            <span style="font-size:1.8rem;">🚽</span>
-            <span class="product-card-title">Sit Happens</span>
-            <span class="badge-appstore">● APP STORE'DA</span>
+    <!-- JIRA TOOLS TAB -->
+    <div id="tab-jira" class="tab-panel">
+      <div class="jira-list">
+        <div class="jira-card">
+          <div>
+            <div class="jira-title" data-tr="Jira DC Governance <span class='badge-active'>● AKTİF</span>" data-en="Jira DC Governance <span class='badge-active'>● ACTIVE</span>">Jira DC Governance <span class="badge-active">● AKTİF</span></div>
+            <p class="jira-desc" data-tr="Workflow, custom field, permission, plugin ve süreç standardizasyonu. Ekiplerin daha görünür, ölçülebilir ve sürdürülebilir çalışmasını sağlayan yapı tasarımı." data-en="Workflow, custom field, permission, plugin and process standardisation. Designing structures that make teams more visible, measurable and sustainable.">Workflow, custom field, permission, plugin ve süreç standardizasyonu. Ekiplerin daha görünür, ölçülebilir ve sürdürülebilir çalışmasını sağlayan yapı tasarımı.</p>
+            <div class="tag-row"><span class="tag">Jira DC</span><span class="tag">Confluence</span><span class="tag">Governance</span><span class="tag">Process Design</span></div>
           </div>
-          <p class="product-desc">
-            Tuvalette telefona dalanlar için eğlenceli <strong>sayaç + hatırlatıcı</strong> uygulaması. Ne kadar süredir orada olduğunu fark ettiren, zamanın nasıl geçtiğini anlayamayanlar için tasarlandı. SwiftUI ile sıfırdan geliştirildi.
-          </p>
-          <div class="tag-row">
-            <span class="tag">SwiftUI</span>
-            <span class="tag">iOS</span>
-            <span class="tag">UNUserNotificationCenter</span>
-            <span class="tag">SwiftData</span>
-          </div>
-          <div style="margin-top:0.5rem;">
-            <a href="https://apps.apple.com/tr/app/sit-happens/id6794938801" target="_blank" class="btn btn-primary" style="font-size:11px; padding:0.5rem 1rem;">App Store'da Gör →</a>
-          </div>
+          <div class="jira-meta"><div class="jira-meta-icon">⚙️</div><span data-tr="Enterprise" data-en="Enterprise">Enterprise</span></div>
         </div>
-
-        <!-- Jellyfish Routine — APP STORE -->
-        <div class="product-card">
-          <div class="product-card-header">
-            <span style="font-size:1.8rem;">🪼</span>
-            <span class="product-card-title">Jellyfish Routine</span>
-            <span class="badge-appstore">● APP STORE'DA</span>
+        <div class="jira-card">
+          <div>
+            <div class="jira-title" data-tr="ScriptRunner & Otomasyon <span class='badge-series'>GROOVY</span>" data-en="ScriptRunner & Automation <span class='badge-series'>GROOVY</span>">ScriptRunner & Otomasyon <span class="badge-series">GROOVY</span></div>
+            <p class="jira-desc" data-tr="Post-function, listener, behaviour, custom endpoint ve scheduled job yapılarıyla iş kurallarını otomatikleştirme. Release görünürlüğü, deployment kontrolleri ve entegrasyon ihtiyaçları." data-en="Automating business rules via post-functions, listeners, behaviours, custom endpoints and scheduled jobs. Release visibility, deployment controls and integration needs.">Post-function, listener, behaviour, custom endpoint ve scheduled job yapılarıyla iş kurallarını otomatikleştirme. Release görünürlüğü, deployment kontrolleri ve entegrasyon ihtiyaçları.</p>
+            <div class="tag-row"><span class="tag">ScriptRunner</span><span class="tag">Groovy</span><span class="tag">REST Endpoints</span><span class="tag">Listeners</span></div>
           </div>
-          <p class="product-desc">
-            Günlük akış, hatırlatıcılar ve zaman blokları üzerinden <strong>daha sürdürülebilir bir düzen</strong> kurmaya odaklanan rutin ve alışkanlık takip uygulaması. Bağımsız ürün denemem.
-          </p>
-          <div class="tag-row">
-            <span class="tag">iOS</span>
-            <span class="tag">Habit Tracker</span>
-            <span class="tag">Routine Design</span>
-            <span class="tag">Indie Product</span>
-          </div>
-          <div style="margin-top:0.5rem;">
-            <a href="https://apps.apple.com/search?term=Jellyfish%20Routine" target="_blank" class="btn btn-primary" style="font-size:11px; padding:0.5rem 1rem;">App Store'da Ara →</a>
-          </div>
+          <div class="jira-meta"><div class="jira-meta-icon">🧩</div><span data-tr="Otomasyon" data-en="Automation">Otomasyon</span></div>
         </div>
-
-        <!-- KoalaWeather — WIP -->
-        <div class="product-card">
-          <div class="product-card-header">
-            <span style="font-size:1.8rem;">🐨</span>
-            <span class="product-card-title">KoalaWeather</span>
-            <span class="badge-wip">⚙ GELİŞTİRİLİYOR</span>
+        <div class="jira-card">
+          <div>
+            <div class="jira-title" data-tr="Mihenk <span class='badge-active'>● AKTİF</span>" data-en="Mihenk <span class='badge-active'>● ACTIVE</span>">Mihenk <span class="badge-active">● AKTİF</span></div>
+            <p class="jira-desc" data-tr="Jira içinde çalışan <strong>AI destekli istek olgunluk değerlendirme paneli</strong>. Gelen talepleri otomatik analiz edip eksik bilgiyi kullanıcıya gösteriyor; ScriptRunner ve grup bazlı değerlendirme mimarisiyle çalışıyor." data-en="An <strong>AI-assisted request maturity assessment panel</strong> running inside Jira. Automatically analyses incoming requests and surfaces missing information to the requester; built on ScriptRunner with group-based evaluation architecture.">Jira içinde çalışan <strong>AI destekli istek olgunluk değerlendirme paneli</strong>. Gelen talepleri otomatik analiz edip eksik bilgiyi kullanıcıya gösteriyor; ScriptRunner ve grup bazlı değerlendirme mimarisiyle çalışıyor.</p>
+            <div class="tag-row"><span class="tag">ScriptRunner</span><span class="tag">AI</span><span class="tag">Groovy</span><span class="tag">Jira Panel</span></div>
           </div>
-          <p class="product-desc">
-            Türk ailelere yönelik hava durumuna göre <strong>bebek & çocuk kıyafet önerisi</strong> yapan web uygulaması. Beş farklı yaş grubuna özel outfit algoritması.
-          </p>
-          <div class="tag-row">
-            <span class="tag">JavaScript</span>
-            <span class="tag">HTML/CSS</span>
-            <span class="tag">Vercel</span>
-            <span class="tag">OpenWeather API</span>
-          </div>
-          <div style="margin-top:0.5rem;">
-            <a href="https://babydress.vercel.app" target="_blank" class="btn btn-primary" style="font-size:11px; padding:0.5rem 1rem;">Siteye Git →</a>
-          </div>
+          <div class="jira-meta"><div class="jira-meta-icon">🤖</div><span data-tr="AI + Jira" data-en="AI + Jira">AI + Jira</span></div>
         </div>
-
-        <!-- WatchPin — WIP -->
-        <div class="product-card">
-          <div class="product-card-header">
-            <span style="font-size:1.8rem;">🎬</span>
-            <span class="product-card-title">WatchPin</span>
-            <span class="badge-wip">⚙ GELİŞTİRİLİYOR</span>
+        <div class="jira-card">
+          <div>
+            <div class="jira-title" data-tr="Jira'nın Derinliklerinde <span class='badge-series'>MEDIUM SERİSİ</span>" data-en="Deep in Jira <span class='badge-series'>MEDIUM SERIES</span>">Jira'nın Derinliklerinde <span class="badge-series">MEDIUM SERİSİ</span></div>
+            <p class="jira-desc" data-tr="Jira'yı süreç, insan, teknik borç, entegrasyon ve organizasyonel hafıza katmanlarıyla ele alan Türkçe içerik serisi." data-en="A Turkish-language content series examining Jira through the lens of process, people, technical debt, integrations and organisational memory.">Jira'yı süreç, insan, teknik borç, entegrasyon ve organizasyonel hafıza katmanlarıyla ele alan Türkçe içerik serisi.</p>
+            <div class="tag-row"><span class="tag">Writing</span><span class="tag">Atlassian</span><span class="tag">Deep Dive</span></div>
           </div>
-          <p class="product-desc">
-            Film ve dizileri <strong>hangi streaming platformunda izleyeceğini</strong> tek aramada bulan iOS uygulaması. TMDb API entegrasyonu, SwiftUI + MVVM mimarisi.
-          </p>
-          <div class="tag-row">
-            <span class="tag">SwiftUI</span>
-            <span class="tag">iOS</span>
-            <span class="tag">TMDb API</span>
-            <span class="tag">MVVM</span>
-          </div>
-          <div style="margin-top:0.5rem;">
-            <span style="font-size:11px; color:var(--muted); font-style:italic;">Yakında yayında...</span>
-          </div>
+          <div class="jira-meta"><div class="jira-meta-icon">✍️</div><span data-tr="Yazı Serisi" data-en="Writing">Yazı Serisi</span></div>
         </div>
-
-        <!-- KoalaParent — WIP -->
-        <div class="product-card">
-          <div class="product-card-header">
-            <span style="font-size:1.8rem;">🌿</span>
-            <span class="product-card-title">KoalaParent</span>
-            <span class="badge-wip">⚙ GELİŞTİRİLİYOR</span>
-          </div>
-          <p class="product-desc">
-            Türk aileleri için tasarlanmış <strong>çok uygulamalı ebeveynlik platformu</strong>. KoalaWeather başlangıç noktası — bebek gelişimi, kıyafet önerisi ve daha fazlasını tek çatı altında toplayacak ekosistem.
-          </p>
-          <div class="tag-row">
-            <span class="tag">React</span>
-            <span class="tag">Mobile-First</span>
-            <span class="tag">Türk Pazarı</span>
-          </div>
-          <div style="margin-top:0.5rem;">
-            <span style="font-size:11px; color:var(--muted); font-style:italic;">Yakında yayında...</span>
-          </div>
-        </div>
-
-        <!-- Dante Outliner -->
-        <div class="product-card">
-          <div class="product-card-header">
-            <span style="font-size:1.8rem;">📝</span>
-            <span class="product-card-title">Dante Outliner</span>
-            <span class="badge-wip">⚡ AÇIK KAYNAK</span>
-          </div>
-          <p class="product-desc">
-            Bike'tan ilham alınan <strong>minimal tarayıcı tabanlı outliner</strong>. Kurulum gerektirmez — index.html'i aç, yaz. Sonsuz iç içe madde, daralt/genişlet, Markdown & düz metin export, otomatik kayıt.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Vanilla JS</span>
-            <span class="tag">HTML/CSS</span>
-            <span class="tag">localStorage</span>
-            <span class="tag">Zero Dependency</span>
-          </div>
-          <div style="margin-top:0.5rem;">
-            <a href="https://github.com/busegenc" target="_blank" class="btn btn-outline" style="font-size:11px; padding:0.5rem 1rem;">GitHub'da Gör →</a>
-          </div>
-        </div>
-
-        <!-- Budgetless -->
-        <div class="product-card">
-          <div class="product-card-header">
-            <span style="font-size:1.8rem;">💸</span>
-            <span class="product-card-title">Budgetless</span>
-            <span style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:0.2rem 0.6rem; margin-left:auto;">🔒 KİŞİSEL</span>
-          </div>
-          <p class="product-desc">
-            Ortak hane halkı bütçe takibi için gerçek zamanlı web uygulaması. <strong>İki kullanıcı aynı anda</strong> harcama girebilir, aylık hedefler takip edilir. Supabase ile senkronize, Vercel'de deploy.
-          </p>
-          <div class="tag-row">
-            <span class="tag">React</span>
-            <span class="tag">Vite</span>
-            <span class="tag">Supabase</span>
-            <span class="tag">Vercel</span>
-          </div>
-          <div style="margin-top:0.5rem;">
-            <span style="font-size:11px; color:var(--muted); font-style:italic;">Kişisel kullanım — kapalı beta.</span>
-          </div>
-        </div>
-
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- BLOG -->
-<section id="blog">
-  <div class="blog-inner fade-up">
-    <div class="blog-header">
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="inner fade-up">
+    <div class="sec-header">
       <div>
-        <div class="section-label">// medium yazılar</div>
-        <h2>Yazılarım</h2>
+        <div class="section-label" data-tr="// bağımsız ürünler" data-en="// independent products">// bağımsız ürünler</div>
+        <h2 data-tr="Bağımsız<br>Ürünler" data-en="Independent<br>Products">Bağımsız<br>Ürünler</h2>
       </div>
-      <a href="https://medium.com/@busegenc" target="_blank" class="github-link">Tümünü Oku →</a>
     </div>
-    <div class="blog-cards" id="blogCards">
-      <div class="blog-loading" id="blogLoading">Yazılar yükleniyor...</div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-header"><span style="font-size:1.5rem;">🚽</span><span class="product-title">Sit Happens</span><span class="badge-appstore">● APP STORE</span></div>
+        <p class="product-desc" data-tr="Tuvalette telefona dalanlar için eğlenceli <strong>sayaç + hatırlatıcı</strong>. Ne kadar süredir orada olduğunu fark ettiren iOS uygulaması. SwiftUI ile sıfırdan geliştirildi." data-en="A fun <strong>timer + reminder</strong> for people who lose track of time on their phone in the bathroom. Built from scratch with SwiftUI.">Tuvalette telefona dalanlar için eğlenceli <strong>sayaç + hatırlatıcı</strong>. Ne kadar süredir orada olduğunu fark ettiren iOS uygulaması. SwiftUI ile sıfırdan geliştirildi.</p>
+        <div class="tag-row"><span class="tag">SwiftUI</span><span class="tag">iOS</span><span class="tag">Notifications</span></div>
+        <a href="https://apps.apple.com/tr/app/sit-happens/id6794938801" target="_blank" class="btn btn-primary" style="font-size:11px;padding:0.5rem 1rem;margin-top:0.5rem;width:fit-content;" data-tr="App Store →" data-en="App Store →">App Store →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-header"><span style="font-size:1.5rem;">🪼</span><span class="product-title">Jellyfish Routine</span><span class="badge-appstore">● APP STORE</span></div>
+        <p class="product-desc" data-tr="Günlük akış, hatırlatıcılar ve zaman blokları üzerinden <strong>sürdürülebilir düzen</strong> kurmaya odaklanan alışkanlık takip uygulaması." data-en="A habit and routine tracker focused on building a <strong>sustainable daily rhythm</strong> through time blocks and reminders.">Günlük akış, hatırlatıcılar ve zaman blokları üzerinden <strong>sürdürülebilir düzen</strong> kurmaya odaklanan alışkanlık takip uygulaması.</p>
+        <div class="tag-row"><span class="tag">iOS</span><span class="tag">Habit Tracker</span><span class="tag">Indie</span></div>
+        <a href="https://apps.apple.com/search?term=Jellyfish%20Routine" target="_blank" class="btn btn-primary" style="font-size:11px;padding:0.5rem 1rem;margin-top:0.5rem;width:fit-content;" data-tr="App Store →" data-en="App Store →">App Store →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-header"><span style="font-size:1.5rem;">🐨</span><span class="product-title">KoalaWeather</span><span class="badge-dev">⚙ GELİŞTİRİLİYOR</span></div>
+        <p class="product-desc" data-tr="Hava durumuna göre <strong>bebek & çocuk kıyafet önerisi</strong> yapan web uygulaması. Türk ailelere yönelik, beş yaş grubuna özel outfit algoritması." data-en="A web app that recommends <strong>baby & children's outfits</strong> based on the weather. Built for Turkish families with a five age-group outfit algorithm.">Hava durumuna göre <strong>bebek & çocuk kıyafet önerisi</strong> yapan web uygulaması. Türk ailelere yönelik, beş yaş grubuna özel outfit algoritması.</p>
+        <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">Vercel</span><span class="tag">OpenWeather API</span></div>
+        <a href="https://babydress.vercel.app" target="_blank" class="btn btn-outline" style="font-size:11px;padding:0.5rem 1rem;margin-top:0.5rem;width:fit-content;" data-tr="Siteye Git →" data-en="Visit Site →">Siteye Git →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-header"><span style="font-size:1.5rem;">🌿</span><span class="product-title">KoalaParent</span><span class="badge-dev">⚙ GELİŞTİRİLİYOR</span></div>
+        <p class="product-desc" data-tr="Türk aileleri için <strong>çok uygulamalı ebeveynlik platformu</strong>. KoalaWeather başlangıç noktası — bebek gelişimi ve daha fazlasını tek çatı altında toplayacak ekosistem." data-en="A <strong>multi-app parenting platform</strong> for Turkish families. KoalaWeather is the starting point — an ecosystem to bring baby development tracking and more under one roof.">Türk aileleri için <strong>çok uygulamalı ebeveynlik platformu</strong>. KoalaWeather başlangıç noktası — bebek gelişimi ve daha fazlasını tek çatı altında toplayacak ekosistem.</p>
+        <div class="tag-row"><span class="tag">React</span><span class="tag">Mobile-First</span></div>
+        <span style="font-size:11px;color:var(--muted);font-style:italic;margin-top:0.5rem;" data-tr="Yakında yayında..." data-en="Coming soon...">Yakında yayında...</span>
+      </div>
+      <div class="product-card">
+        <div class="product-header"><span style="font-size:1.5rem;">🎬</span><span class="product-title">WatchPin</span><span class="badge-dev">⚙ GELİŞTİRİLİYOR</span></div>
+        <p class="product-desc" data-tr="Film ve dizileri <strong>hangi streaming platformunda izleyeceğini</strong> tek aramada bulan iOS uygulaması. TMDb API + SwiftUI + MVVM." data-en="An iOS app that finds <strong>which streaming platform</strong> has the film or series you want to watch — in a single search. TMDb API + SwiftUI + MVVM.">Film ve dizileri <strong>hangi streaming platformunda izleyeceğini</strong> tek aramada bulan iOS uygulaması. TMDb API + SwiftUI + MVVM.</p>
+        <div class="tag-row"><span class="tag">SwiftUI</span><span class="tag">iOS</span><span class="tag">TMDb API</span></div>
+        <span style="font-size:11px;color:var(--muted);font-style:italic;margin-top:0.5rem;" data-tr="Yakında yayında..." data-en="Coming soon...">Yakında yayında...</span>
+      </div>
+      <div class="product-card">
+        <div class="product-header"><span style="font-size:1.5rem;">📝</span><span class="product-title">Dante Outliner</span><span class="badge-oss">⚡ AÇIK KAYNAK</span></div>
+        <p class="product-desc" data-tr="Bike'tan ilham alınan <strong>minimal tarayıcı tabanlı outliner</strong>. Kurulum gerektirmez. Sonsuz iç içe madde, daralt/genişlet, Markdown export, otomatik kayıt." data-en="A minimal <strong>browser-based outliner</strong> inspired by Bike. No installation needed. Infinite nesting, collapse/expand, Markdown export, auto-save.">Bike'tan ilham alınan <strong>minimal tarayıcı tabanlı outliner</strong>. Kurulum gerektirmez. Sonsuz iç içe madde, daralt/genişlet, Markdown export, otomatik kayıt.</p>
+        <div class="tag-row"><span class="tag">Vanilla JS</span><span class="tag">Zero Dependency</span></div>
+        <a href="https://github.com/busegenc" target="_blank" class="btn btn-outline" style="font-size:11px;padding:0.5rem 1rem;margin-top:0.5rem;width:fit-content;" data-tr="GitHub →" data-en="GitHub →">GitHub →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-header"><span style="font-size:1.5rem;">💸</span><span class="product-title">Budgetless</span><span class="badge-private">🔒 KİŞİSEL</span></div>
+        <p class="product-desc" data-tr="Ortak hane bütçe takibi için <strong>gerçek zamanlı web uygulaması</strong>. İki kullanıcı aynı anda harcama girebilir, aylık hedefler takip edilir. Supabase ile senkronize." data-en="A <strong>real-time shared household budget tracker</strong>. Two users can log expenses simultaneously, monthly goals are tracked. Synced via Supabase.">Ortak hane bütçe takibi için <strong>gerçek zamanlı web uygulaması</strong>. İki kullanıcı aynı anda harcama girebilir, aylık hedefler takip edilir. Supabase ile senkronize.</p>
+        <div class="tag-row"><span class="tag">React</span><span class="tag">Supabase</span><span class="tag">Vercel</span></div>
+        <span style="font-size:11px;color:var(--muted);font-style:italic;margin-top:0.5rem;" data-tr="Kişisel kullanım — kapalı beta." data-en="Personal use — closed beta.">Kişisel kullanım — kapalı beta.</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="skills-inner fade-up">
-    <div class="section-label">// yetenekler</div>
-    <h2>Uzmanlık<br>Alanları</h2>
+  <div class="inner fade-up">
+    <div class="section-label" data-tr="// uzmanlık" data-en="// expertise">// uzmanlık</div>
+    <h2 data-tr="Uzmanlık<br>Alanları" data-en="Areas of<br>Expertise">Uzmanlık<br>Alanları</h2>
     <div class="skills-grid">
-      <div class="skill-item">
-        <div class="skill-tag">Atlassian</div>
-        <div class="skill-name">Jira Data Center</div>
-        <div class="skill-bar"><div class="skill-fill" style="--delay:0.1s; width:95%"></div></div>
+      <div class="skill-item"><div class="skill-tag">Core</div><div class="skill-name" data-tr="Jira DC Yönetimi & Mimarisi" data-en="Jira DC Administration & Architecture">Jira DC Yönetimi & Mimarisi</div><div class="skill-bar"><div class="skill-fill" style="--delay:0.05s;width:97%"></div></div></div>
+      <div class="skill-item"><div class="skill-tag">Automation</div><div class="skill-name" data-tr="ScriptRunner / Groovy" data-en="ScriptRunner / Groovy">ScriptRunner / Groovy</div><div class="skill-bar"><div class="skill-fill" style="--delay:0.1s;width:93%"></div></div></div>
+      <div class="skill-item"><div class="skill-tag">Design</div><div class="skill-name" data-tr="Workflow & Süreç Mimarisi" data-en="Workflow & Process Architecture">Workflow & Süreç Mimarisi</div><div class="skill-bar"><div class="skill-fill" style="--delay:0.15s;width:95%"></div></div></div>
+      <div class="skill-item"><div class="skill-tag">Integration</div><div class="skill-name" data-tr="REST API & Kurumsal Entegrasyonlar" data-en="REST API & Enterprise Integrations">REST API & Kurumsal Entegrasyonlar</div><div class="skill-bar"><div class="skill-fill" style="--delay:0.2s;width:87%"></div></div></div>
+      <div class="skill-item"><div class="skill-tag">Migration</div><div class="skill-name" data-tr="Jira DC Yükseltme & Migrasyon" data-en="Jira DC Upgrade & Migration">Jira DC Yükseltme & Migrasyon</div><div class="skill-bar"><div class="skill-fill" style="--delay:0.25s;width:90%"></div></div></div>
+      <div class="skill-item"><div class="skill-tag">Dev</div><div class="skill-name" data-tr="Özel Jira Plugin Geliştirme" data-en="Custom Jira Plugin Development">Özel Jira Plugin Geliştirme</div><div class="skill-bar"><div class="skill-fill" style="--delay:0.3s;width:88%"></div></div></div>
+      <div class="skill-item"><div class="skill-tag">Data</div><div class="skill-name" data-tr="SQL / Veri Modeli / Performans Tasarımı" data-en="SQL / Data Model / Performance Design">SQL / Veri Modeli / Performans Tasarımı</div><div class="skill-bar"><div class="skill-fill" style="--delay:0.35s;width:82%"></div></div></div>
+      <div class="skill-item"><div class="skill-tag">AI</div><div class="skill-name" data-tr="AI Destekli Jira Çözümleri" data-en="AI-Assisted Jira Solutions">AI Destekli Jira Çözümleri</div><div class="skill-bar"><div class="skill-fill" style="--delay:0.4s;width:80%"></div></div></div>
+      <div class="skill-item"><div class="skill-tag">Product</div><div class="skill-name" data-tr="Product Ownership & Gereksinim Mühendisliği" data-en="Product Ownership & Requirements Engineering">Product Ownership & Gereksinim Mühendisliği</div><div class="skill-bar"><div class="skill-fill" style="--delay:0.45s;width:88%"></div></div></div>
+      <div class="skill-item"><div class="skill-tag">Future</div><div class="skill-name" data-tr="Jira Cloud / Forge" data-en="Jira Cloud / Forge">Jira Cloud / Forge</div><div class="skill-bar"><div class="skill-fill" style="--delay:0.5s;width:35%"></div></div><div class="skill-building" data-tr="↗ Geliştiriliyor" data-en="↗ Currently Building">↗ Geliştiriliyor</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="inner fade-up">
+    <div class="sec-header">
+      <div>
+        <div class="section-label" data-tr="// yazılar & içgörüler" data-en="// writing & insights">// yazılar & içgörüler</div>
+        <h2 data-tr="Yazılar" data-en="Writing & Insights">Yazılar</h2>
       </div>
-      <div class="skill-item">
-        <div class="skill-tag">Atlassian</div>
-        <div class="skill-name">Confluence</div>
-        <div class="skill-bar"><div class="skill-fill" style="--delay:0.15s; width:88%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-tag">Automation</div>
-        <div class="skill-name">ScriptRunner</div>
-        <div class="skill-bar"><div class="skill-fill" style="--delay:0.2s; width:92%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-tag">Dil</div>
-        <div class="skill-name">Groovy / Java</div>
-        <div class="skill-bar"><div class="skill-fill" style="--delay:0.25s; width:82%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-tag">Mobil</div>
-        <div class="skill-name">SwiftUI / iOS</div>
-        <div class="skill-bar"><div class="skill-fill" style="--delay:0.28s; width:75%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-tag">Rol</div>
-        <div class="skill-name">Senior Software Developer</div>
-        <div class="skill-bar"><div class="skill-fill" style="--delay:0.3s; width:90%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-tag">Süreç</div>
-        <div class="skill-name">Process Design</div>
-        <div class="skill-bar"><div class="skill-fill" style="--delay:0.35s; width:95%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-tag">Ürün</div>
-        <div class="skill-name">Product Ownership</div>
-        <div class="skill-bar"><div class="skill-fill" style="--delay:0.38s; width:88%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-tag">Integration</div>
-        <div class="skill-name">REST / Webhook</div>
-        <div class="skill-bar"><div class="skill-fill" style="--delay:0.4s; width:85%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-tag">Future</div>
-        <div class="skill-name">AI & Automation</div>
-        <div class="skill-bar"><div class="skill-fill" style="--delay:0.45s; width:78%"></div></div>
-      </div>
+      <a href="https://medium.com/@busegenc" target="_blank" class="sec-link" data-tr="Tümünü Oku →" data-en="Read All →">Tümünü Oku →</a>
+    </div>
+    <div class="blog-cards" id="blogCards">
+      <div class="blog-loading" id="blogLoading" data-tr="Yazılar yükleniyor..." data-en="Loading articles...">Yazılar yükleniyor...</div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="fade-up">
-  <div class="section-label">// iletişim</div>
-  <h2>Birlikte<br><em style="font-style:italic;color:var(--accent)">çalışalım</em></h2>
-  <p>Jira, Atlassian ekosistemi, ScriptRunner, süreç otomasyonu, ürün geliştirme ya da sadece merhaba demek için — buradayım.</p>
+  <div class="section-label" data-tr="// iletişim" data-en="// contact">// iletişim</div>
+  <h2 data-tr="Konuşalım" data-en="Let's <em style='font-style:italic;color:var(--accent)'>Talk</em>">Konuşalım</h2>
+  <p data-tr="Karmaşık bir Jira Data Center ortamı, otomasyon zorluğu veya Cloud'a geçiş değerlendirmesi için yardıma mı ihtiyacınız var? Konuşalım." data-en="Need help with a complex Jira Data Center environment, automation challenge or Cloud-readiness assessment? Let's talk.">Karmaşık bir Jira Data Center ortamı, otomasyon zorluğu veya Cloud'a geçiş değerlendirmesi için yardıma mı ihtiyacınız var? Konuşalım.</p>
   <div class="contact-links">
     <a href="https://github.com/busegenc" target="_blank" class="btn btn-primary">GitHub</a>
+    <a href="https://medium.com/@busegenc" target="_blank" class="btn btn-outline">Medium</a>
     <a href="https://www.linkedin.com/in/buse-genc" target="_blank" class="btn btn-outline">LinkedIn</a>
   </div>
 </section>
 
 <footer>
   <span>© 2026 Buse (Genç) Mut</span>
-  <span>Senior Software Developer • Jira • Atlassian • AI</span>
+  <span data-tr="Atlassian Çözüm Mühendisi · Ürün Geliştirici" data-en="Atlassian Solutions Engineer · Product Builder">Atlassian Çözüm Mühendisi · Ürün Geliştirici</span>
 </footer>
 
 <script>
+  // CURSOR GLOW
   const glow = document.getElementById('glow');
-  document.addEventListener('mousemove', e => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
-  });
+  document.addEventListener('mousemove', e => { glow.style.left = e.clientX+'px'; glow.style.top = e.clientY+'px'; });
 
+  // FADE UP
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  function switchTab(tab) {
+  // TABS
+  function switchTab(tab, btn) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.add('active');
-    event.target.classList.add('active');
+    document.getElementById('tab-'+tab).classList.add('active');
+    btn.classList.add('active');
   }
 
+  // LANGUAGE TOGGLE
+  let currentLang = 'tr';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-tr][data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (!val) return;
+      // buttons and links: update textContent carefully
+      if (el.tagName === 'A' || el.tagName === 'BUTTON' || el.tagName === 'SPAN' || el.tagName === 'DIV') {
+        // check if it contains inner HTML tags
+        if (val.includes('<')) {
+          el.innerHTML = val;
+        } else {
+          el.textContent = val;
+        }
+      } else if (el.tagName === 'P') {
+        el.innerHTML = val;
+      } else {
+        el.innerHTML = val;
+      }
+    });
+
+    // badge text on product cards with dev status
+    document.querySelectorAll('.badge-dev').forEach(b => {
+      b.textContent = lang === 'tr' ? '⚙ GELİŞTİRİLİYOR' : '⚙ IN PROGRESS';
+    });
+    document.querySelectorAll('.badge-oss').forEach(b => {
+      b.textContent = lang === 'tr' ? '⚡ AÇIK KAYNAK' : '⚡ OPEN SOURCE';
+    });
+    document.querySelectorAll('.badge-private').forEach(b => {
+      b.textContent = lang === 'tr' ? '🔒 KİŞİSEL' : '🔒 PRIVATE';
+    });
+  }
+
+  // BLOG
   async function loadBlog() {
     const container = document.getElementById('blogCards');
     const loading = document.getElementById('blogLoading');
     try {
-      const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@busegenc&api_key=&count=6');
+      const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@busegenc&count=6');
       const data = await res.json();
       if (data.status === 'ok' && data.items && data.items.length > 0) {
         container.innerHTML = '';
@@ -697,18 +551,8 @@
           const date = new Date(item.pubDate).toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
           const tags = item.categories?.slice(0,2).join(' · ') || 'Makale';
           const card = document.createElement('a');
-          card.href = item.link;
-          card.target = '_blank';
-          card.className = 'blog-card';
-          card.innerHTML = `
-            <div class="blog-card-tag">${tags}</div>
-            <div class="blog-card-title">${item.title}</div>
-            <div class="blog-card-desc">${desc}</div>
-            <div class="blog-card-meta">
-              <span>${date}</span>
-              <span style="margin-left:auto; color:var(--accent)">Oku →</span>
-            </div>
-          `;
+          card.href = item.link; card.target = '_blank'; card.className = 'blog-card';
+          card.innerHTML = `<div class="blog-card-tag">${tags}</div><div class="blog-card-title">${item.title}</div><div class="blog-card-desc">${desc}</div><div class="blog-card-meta"><span>${date}</span><span style="margin-left:auto;color:var(--accent)">Oku →</span></div>`;
           container.appendChild(card);
         });
       } else {
